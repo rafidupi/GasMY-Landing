@@ -56,6 +56,7 @@ export function initGA(): void {
     window.dataLayer.push(arguments);
   };
 
+  // @ts-ignore
   window.gtag('js', new Date());
   window.gtag('config', gaId);
 }
@@ -76,6 +77,8 @@ export function initMetaPixel(): void {
   })(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
 
+  // @ts-ignore
   window.fbq!('init', pixelId);
+  // @ts-ignore
   window.fbq!('track', 'PageView');
 }
