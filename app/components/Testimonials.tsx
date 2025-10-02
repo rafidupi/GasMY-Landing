@@ -4,14 +4,14 @@ import { Card } from './Card';
 
 const testimonials = [
   {
-    quote: 'Ahora sé exactamente cuánto gasto por mes usando el auto.',
-    author: 'Camila',
-    location: 'Ñuñoa',
+    quote: "Ahora sé exactamente cuánto gasto por mes usando el auto.",
+    author: "Camila",
+    location: "Ñuñoa",
   },
   {
-    quote: 'Me hizo consciente de mis peajes y bajé mis costos.',
-    author: 'Rodrigo',
-    location: 'Maipú',
+    quote: "Me hizo consciente de mis peajes y bajé mis costos.",
+    author: "Rodrigo",
+    location: "Maipú",
   },
 ];
 
@@ -30,7 +30,7 @@ export function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="p-6 space-y-4">
                 <p className="text-lg text-text-strong italic">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-2 text-sm text-text-mid">
                   <span className="font-medium text-text-strong">
