@@ -9,9 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold">GasMy</h3>
-            <p className="text-white/70 text-sm">
-              Tu gasto en auto, ordenado y optimizado.
-            </p>
+            <p className="text-white/70 text-sm">Tu gasto en auto, ordenado y optimizado.</p>
           </div>
 
           {/* Links */}
@@ -47,27 +45,24 @@ export function Footer() {
             <div className="space-y-3">
               <p className="text-white/70 text-sm">Síguenos en redes sociales</p>
               <div className="flex gap-3">
-                <a 
-                  href="https://instagram.com/gasmy.cl" 
-                  target="_blank" 
+                <a
+                  href="https://instagram.com/gasmy.cl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-ios flex items-center justify-center hover:bg-white/20 transition-colors group"
                   aria-label="Instagram @gasmy.cl"
                 >
                   <Instagram className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </a>
-                <a 
-                  href="https://tiktok.com/@gasmy.cl" 
-                  target="_blank" 
+                <a
+                  href="https://tiktok.com/@gasmy.cl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-ios flex items-center justify-center hover:bg-white/20 transition-colors group"
                   aria-label="TikTok @gasmy.cl"
                 >
                   <Music className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </a>
-              </div>
-              <div className="text-xs text-white/60 space-y-1">
-                <p>@gasmy.cl</p>
               </div>
             </div>
           </div>
@@ -88,11 +83,6 @@ export function Footer() {
                   support@gasmy.org
                 </a>
               </li>
-              <li>
-                <a href="https://gasmy.org" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
-                  gasmy.org
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -102,7 +92,7 @@ export function Footer() {
             <p className="text-sm text-white/60">
               © {new Date().getFullYear()} GasMy — Hecho en Chile con cariño por gente bacán.
             </p>
-            
+
             <div className="flex flex-col md:flex-row items-center gap-4">
               {/* Legal Links */}
               <div className="flex gap-4 text-sm text-white/60">
@@ -113,21 +103,21 @@ export function Footer() {
                   Términos
                 </a>
               </div>
-              
+
               {/* Social Media Icons */}
               <div className="flex gap-2">
-                <a 
-                  href="https://instagram.com/gasmy.cl" 
-                  target="_blank" 
+                <a
+                  href="https://instagram.com/gasmy.cl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4 text-white/70" />
                 </a>
-                <a 
-                  href="https://tiktok.com/@gasmy.cl" 
-                  target="_blank" 
+                <a
+                  href="https://tiktok.com/@gasmy.cl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="TikTok"
