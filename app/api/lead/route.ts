@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     // Google Sheets webhook - Always send data here
     const googleSheetsWebhook =
-      'https://script.google.com/macros/s/AKfycbx2r4YOAVr2sdGNZoDD_HYKYMfUMinYqFfhv9g6FvvytHU-0modh7pUylKhbHst15qf/exec';
+      'https://script.google.com/macros/s/AKfycbzTxhcvTOc1A45y8GkqNefhhCUgrBZbB6BIuuRqgJsvSxJfwzusTZZ8bifMQb6r2WZNxQ/exec';
 
     try {
       const response = await fetch(googleSheetsWebhook, {
@@ -53,6 +53,33 @@ export async function POST(request: Request) {
         }
       } catch (error) {
         console.error('Error forwarding to external endpoint:', error);
+      }
+    }
+
+    // Send confirmation email for beta registrations
+    if (body.type === 'beta' && (body.email || body.correo)) {
+      try {
+        const emailResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/send-email`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: body.email || body.correo,
+              nombre: body.nombre,
+            }),
+          }
+        );
+
+        if (!emailResponse.ok) {
+          console.error('Failed to send confirmation email:', emailResponse.statusText);
+        } else {
+          console.log('✅ Confirmation email sent successfully');
+        }
+      } catch (error) {
+        console.error('Error sending confirmation email:', error);
       }
     }
 
