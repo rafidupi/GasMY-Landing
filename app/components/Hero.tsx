@@ -39,29 +39,23 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
                 Tu gasto en auto, ordenado y optimizado.
               </h1>
               <p className="text-lg md:text-xl text-text-mid max-w-2xl">
-                GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuánto gastas por viaje y por mes.
+                GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuánto
+                gastas por viaje y por mes.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={handleBetaClick}
-              >
+              <Button variant="primary" size="lg" onClick={handleBetaClick}>
                 Únete a la beta
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleCalcClick}
-              >
+              <Button variant="outline" size="lg" onClick={handleCalcClick}>
                 Calcula tu ahorro
               </Button>
             </div>
 
             <p className="text-sm text-text-light">
-              Tu auto te cuesta más de lo que crees. GasMy lo hace visible para que puedas optimizar.
+              Tu auto te cuesta más de lo que crees. GasMy lo hace visible para que puedas
+              optimizar.
             </p>
           </div>
 
