@@ -9,14 +9,14 @@ const testimonials = [
     location: 'San Bernardo',
   },
   {
-    quote: 'Me hizo consciente de mis peajes y bajé mis costos.',
-    author: 'Nicole',
-    location: 'Maipú',
-  },
-  {
     quote: 'Me fui a la playa con mis amigos y fue bacán poder dividir el viaje exacto.',
     author: 'Bastián',
     location: 'Huechuraba',
+  },
+  {
+    quote: 'Me hizo consciente de mis peajes y bajé mis costos.',
+    author: 'Nicole',
+    location: 'Maipú',
   },
 ];
 
