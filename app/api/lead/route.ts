@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    
+
     // Log to console (in development)
     console.log('📨 New lead received:', {
       type: body.type,
@@ -12,8 +12,9 @@ export async function POST(request: Request) {
     });
 
     // Google Sheets webhook - Always send data here
-    const googleSheetsWebhook = 'https://script.google.com/macros/s/AKfycbx2r4YOAVr2sdGNZoDD_HYKYMfUMinYqFfhv9g6FvvytHU-0modh7pUylKhbHst15qf/exec';
-    
+    const googleSheetsWebhook =
+      'https://script.google.com/macros/s/AKfycbx2r4YOAVr2sdGNZoDD_HYKYMfUMinYqFfhv9g6FvvytHU-0modh7pUylKhbHst15qf/exec';
+
     try {
       const response = await fetch(googleSheetsWebhook, {
         method: 'POST',
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
 
     // Optional: If NEXT_PUBLIC_FORM_ENDPOINT is configured, forward there too
     const formEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
-    
+
     if (formEndpoint) {
       try {
         const response = await fetch(formEndpoint, {
@@ -57,8 +58,8 @@ export async function POST(request: Request) {
 
     // Return success response
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Lead received successfully',
       },
       { status: 200 }
@@ -66,8 +67,8 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error processing lead:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         message: 'Error processing lead',
       },
       { status: 500 }
