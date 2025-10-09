@@ -11,7 +11,28 @@ export async function POST(request: Request) {
       data: body,
     });
 
-    // If NEXT_PUBLIC_FORM_ENDPOINT is configured, forward the data
+    // Google Sheets webhook - Always send data here
+    const googleSheetsWebhook = 'https://script.google.com/macros/s/AKfycbx2r4YOAVr2sdGNZoDD_HYKYMfUMinYqFfhv9g6FvvytHU-0modh7pUylKhbHst15qf/exec';
+    
+    try {
+      const response = await fetch(googleSheetsWebhook, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to save to Google Sheets:', response.statusText);
+      } else {
+        console.log('✅ Lead saved to Google Sheets successfully');
+      }
+    } catch (error) {
+      console.error('Error saving to Google Sheets:', error);
+    }
+
+    // Optional: If NEXT_PUBLIC_FORM_ENDPOINT is configured, forward there too
     const formEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
     
     if (formEndpoint) {
