@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
-      from: 'GasMy <contact@gasmy.org>',
+      from: 'GasMy <onboarding@resend.dev>', // Dominio temporal mientras se verifica gasmy.org
       to: [email],
       subject: '¡Bienvenido a la beta de GasMy! 🎉',
       html: `
