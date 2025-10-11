@@ -1,7 +1,14 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Inicializar Resend solo cuando se use, no al importar
+const getResendClient = () => {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY is not configured');
+  }
+  return new Resend(apiKey);
+};
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +20,9 @@ export async function POST(request: Request) {
 
     // Personalizar el saludo
     const greeting = nombre ? `¡Hola ${nombre}!` : '¡Hola!';
+
+    // Obtener cliente de Resend
+    const resend = getResendClient();
 
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
