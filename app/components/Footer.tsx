@@ -1,9 +1,16 @@
 import { Container } from './Container';
 import { Instagram, Music, Mail, Phone } from 'lucide-react';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export function Footer() {
   return (
-    <footer className="bg-text-strong text-white py-12">
+    <footer id="contacto" className={`bg-text-strong text-white py-12 ${poppins.className}`}>
       <Container>
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
