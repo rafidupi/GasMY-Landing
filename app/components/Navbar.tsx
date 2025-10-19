@@ -4,7 +4,7 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Poppins } from 'next/font/google';
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   weight: ['400', '500', '600'],
   subsets: ['latin'],
   display: 'swap',
@@ -145,20 +145,14 @@ export default function GasMyNavbar({
                 strokeWidth="0.5"
               />
               {/* Brillo en la gota */}
-              <ellipse
-                cx="18"
-                cy="14"
-                rx="2.5"
-                ry="3"
-                fill="rgba(255,255,255,0.3)"
-              />
+              <ellipse cx="18" cy="14" rx="2.5" ry="3" fill="rgba(255,255,255,0.3)" />
             </svg>
           </span>
-          <span 
-            style={{ 
+          <span
+            style={{
               fontSize: 22,
               fontWeight: 500,
-              letterSpacing: '-0.02em'
+              letterSpacing: '-0.02em',
             }}
           >
             GasMy
@@ -198,10 +192,10 @@ export default function GasMyNavbar({
             boxShadow: '0 6px 20px rgba(0, 102, 255, 0.5)',
             willChange: 'transform, box-shadow',
           }}
-          whileHover={{ 
+          whileHover={{
             background: 'linear-gradient(135deg, #0052cc 0%, #0044aa 100%)',
             y: -2,
-            boxShadow: '0 8px 28px rgba(0, 102, 255, 0.65)'
+            boxShadow: '0 8px 28px rgba(0, 102, 255, 0.65)',
           }}
           whileTap={{ y: 0 }}
           transition={{ type: 'spring', stiffness: 400, damping: 25, duration: 0.3 }}

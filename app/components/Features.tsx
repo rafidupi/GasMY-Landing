@@ -36,7 +36,8 @@ export function Features() {
               Qué nos hace excepcionales
             </h2>
             <p className="text-lg text-text-mid max-w-2xl mx-auto">
-              Tu auto te cuesta más de lo que crees. GasMy lo hace visible para que puedas optimizar.
+              Tu auto te cuesta más de lo que crees. GasMy lo hace visible para que puedas
+              optimizar.
             </p>
           </div>
 
@@ -44,17 +45,16 @@ export function Features() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Card key={index} className="text-center space-y-4 hover:shadow-md transition-shadow">
+                <Card
+                  key={index}
+                  className="text-center space-y-4 hover:shadow-md transition-shadow"
+                >
                   <div className="mx-auto w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
                     <Icon className="w-7 h-7 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-text-strong">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-text-mid">
-                      {feature.description}
-                    </p>
+                    <h3 className="text-lg font-semibold text-text-strong">{feature.title}</h3>
+                    <p className="text-sm text-text-mid">{feature.description}</p>
                   </div>
                 </Card>
               );

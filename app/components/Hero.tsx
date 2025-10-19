@@ -23,7 +23,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
   };
 
   return (
-    <section className="pt-16 pb-12 md:pt-24 md:pb-16 bg-bg-main">
+    <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-bg-main">
       <Container>
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left Content */}
@@ -62,9 +62,9 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
           {/* Right Visual - iPhone Mockup */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative max-w-md lg:max-w-lg w-full">
-              <img 
-                src="/iphone-mockup.png" 
-                alt="GasMy App en iPhone mostrando TAG BIP y gastos" 
+              <img
+                src="/iphone-mockup.png"
+                alt="GasMy App en iPhone mostrando TAG BIP y gastos"
                 className="w-full h-auto drop-shadow-2xl object-contain"
               />
             </div>
