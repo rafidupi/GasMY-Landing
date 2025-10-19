@@ -32,8 +32,8 @@ export default function GasMyNavbar({
   const [open, setOpen] = React.useState(false);
 
   const links = [
-    { label: 'Features', href: '#features' },
-    { label: 'Planes', href: '#planes' },
+    { label: 'Features', href: '#diferenciadores' },
+    { label: 'Planes', href: '#pricing-individuals' },
     { label: 'Testimonios', href: '#testimonios' },
     { label: 'Contacto', href: '#contacto' },
   ];
@@ -81,9 +81,13 @@ export default function GasMyNavbar({
           align-items: center;
           gap: 22px;
           font-size: 14px;
+          min-height: 20px;
+          content-visibility: auto;
         }
         .gm-cta {
           display: none;
+          min-width: 120px;
+          min-height: 40px;
         }
         .gm-burger {
           display: inline-flex;

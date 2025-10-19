@@ -22,7 +22,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <Section className="bg-bg-card">
+    <Section id="testimonios" className="bg-bg-card">
       <Container>
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
