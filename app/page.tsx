@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <main className="min-h-screen" style={{ position: 'relative' }}>
       {/* Gradient Spotlight Effect - Con z-index positivo */}
-      <div 
+      <div
         style={{
           position: 'fixed',
           top: 0,
@@ -45,7 +45,7 @@ export default function Home() {
           bottom: 0,
           zIndex: 0,
           background: '#f8f9fa',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
         }}
       >
         <div
@@ -55,12 +55,13 @@ export default function Home() {
             right: '5%',
             width: '700px',
             height: '700px',
-            background: 'radial-gradient(circle, rgba(0, 102, 255, 0.7) 0%, rgba(0, 68, 255, 0.5) 30%, rgba(0, 51, 204, 0.3) 50%, transparent 75%)',
+            background:
+              'radial-gradient(circle, rgba(0, 102, 255, 0.7) 0%, rgba(0, 68, 255, 0.5) 30%, rgba(0, 51, 204, 0.3) 50%, transparent 75%)',
             filter: 'blur(100px)',
           }}
         />
       </div>
-      
+
       <div style={{ position: 'relative', zIndex: 1 }}>
         <GasMyNavbar />
         <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />

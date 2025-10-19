@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.svg?v=2',
   },
 };
 
@@ -43,7 +43,7 @@ export default function RootLayout({
     <html lang="es-CL">
       <body>
         {/* Gradient Spotlight Effect - TEST VISIBLE */}
-        <div 
+        <div
           style={{
             position: 'fixed',
             top: 0,
@@ -52,7 +52,7 @@ export default function RootLayout({
             bottom: 0,
             zIndex: -1,
             background: '#f8f9fa',
-            pointerEvents: 'none'
+            pointerEvents: 'none',
           }}
         >
           {/* Spotlight SUPER VISIBLE para test */}
@@ -63,7 +63,8 @@ export default function RootLayout({
               right: '5%',
               width: '800px',
               height: '800px',
-              background: 'radial-gradient(circle, rgba(0, 102, 255, 0.9) 0%, rgba(0, 68, 255, 0.7) 25%, rgba(0, 51, 204, 0.5) 50%, transparent 80%)',
+              background:
+                'radial-gradient(circle, rgba(0, 102, 255, 0.9) 0%, rgba(0, 68, 255, 0.7) 25%, rgba(0, 51, 204, 0.5) 50%, transparent 80%)',
               filter: 'blur(100px)',
             }}
           />
