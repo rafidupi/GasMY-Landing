@@ -59,50 +59,15 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             </p>
           </div>
 
-          {/* Right Visual - Mockup Card */}
+          {/* Right Visual - iPhone Mockup */}
           <div className="flex justify-center lg:justify-end">
-            <Card gradient className="max-w-sm w-full space-y-4">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-white/80 text-sm">Estado actual</span>
-                  <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">
-                    En ruta
-                  </span>
-                </div>
-                <h3 className="text-2xl font-bold">Tu viaje de hoy</h3>
-              </div>
-
-              <div className="space-y-3">
-                {/* TAG detectado */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-ios p-3 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium">TAG detectado</span>
-                  </div>
-                  <p className="text-xl font-bold">Costanera Norte</p>
-                  <p className="text-sm text-white/70">$1.200 CLP</p>
-                </div>
-
-                {/* Costo por km */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-ios p-3">
-                  <p className="text-sm text-white/70 mb-1">Costo por km</p>
-                  <p className="text-2xl font-bold">$85</p>
-                </div>
-
-                {/* Costo del viaje */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-ios p-3">
-                  <p className="text-sm text-white/70 mb-1">Costo del viaje</p>
-                  <p className="text-2xl font-bold">$2.550</p>
-                  <p className="text-xs text-white/60 mt-1">Bencina + peajes</p>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-white/20">
-                <p className="text-sm text-white/70 text-center">
-                  Tracking automático en tiempo real
-                </p>
-              </div>
-            </Card>
+            <div className="relative max-w-md lg:max-w-lg w-full">
+              <img 
+                src="/iphone-mockup.png" 
+                alt="GasMy App en iPhone mostrando TAG BIP y gastos" 
+                className="w-full h-auto drop-shadow-2xl object-contain"
+              />
+            </div>
           </div>
         </div>
       </Container>
