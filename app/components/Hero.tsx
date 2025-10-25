@@ -31,12 +31,11 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             <div className="flex flex-wrap gap-3">
               <Badge variant="default">Beta en Santiago RM</Badge>
               <Badge variant="success">Freemium</Badge>
-              <Badge variant="outline">7 días gratis</Badge>
             </div>
 
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-strong leading-tight">
-                Tu gasto en auto, ordenado y optimizado.
+                Lo que gastas al pisar el acelerador, sin sorpresas.
               </h1>
               <p className="text-lg md:text-xl text-text-mid max-w-2xl">
                 GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuánto
@@ -47,9 +46,6 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="primary" size="lg" onClick={handleBetaClick}>
                 Únete a la beta
-              </Button>
-              <Button variant="outline" size="lg" onClick={handleCalcClick}>
-                Calcula tu ahorro
               </Button>
             </div>
 

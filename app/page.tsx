@@ -67,7 +67,7 @@ export default function Home() {
         <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />
         <HowItWorks />
         <Features />
-        <Calculator onResultEmail={() => setBetaFormOpen(true)} />
+        {/* <Calculator onResultEmail={() => setBetaFormOpen(true)} /> */}
         <Pricing
           onBetaClick={() => setBetaFormOpen(true)}
           onFlotaClick={() => setFlotaFormOpen(true)}

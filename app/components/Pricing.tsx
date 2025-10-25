@@ -31,7 +31,7 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
 
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-text-strong">
-                Soy conductor particular
+                Soy conductor particular <span role="img" aria-label="car">🚘</span>
               </h3>
             </div>
 
@@ -60,7 +60,12 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                   ))}
                 </ul>
 
-                <Button variant="primary" size="lg" onClick={onBetaClick} className="w-full mt-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={onBetaClick}
+                  className="w-full mt-auto"
+                >
                   Empieza gratis
                 </Button>
               </Card>
@@ -100,7 +105,12 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                   ))}
                 </ul>
 
-                <Button variant="primary" size="lg" onClick={onBetaClick} className="w-full mt-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={onBetaClick}
+                  className="w-full mt-auto"
+                >
                   Contratar ahora
                 </Button>
               </Card>
@@ -115,7 +125,7 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-text-strong">
-                Soy empresa o flota
+                Soy empresa o flota <span role="img" aria-label="truck">🚛</span>
               </h3>
             </div>
 
@@ -132,7 +142,9 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                   <p className="text-text-mid">
                     Ideal para flotas pequeñas. Simple, eficiente y accesible.
                   </p>
-                  <p className="text-sm text-text-mid font-medium">Incluye todo lo del Individual, más:</p>
+                  <p className="text-sm text-text-mid font-medium">
+                    Incluye todo lo del Individual, más:
+                  </p>
                 </div>
 
                 <ul className="space-y-3 flex-grow my-6">
@@ -151,7 +163,12 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                   ))}
                 </ul>
 
-                <Button variant="primary" size="lg" onClick={onFlotaClick} className="w-full mt-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={onFlotaClick}
+                  className="w-full mt-auto"
+                >
                   Solicitar cotización
                 </Button>
               </Card>
@@ -169,9 +186,12 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                     <span className="text-text-mid">CLP/mes</span>
                   </div>
                   <p className="text-text-mid">
-                    Para flotas medianas y grandes que necesitan control, eficiencia y analítica avanzada.
+                    Para flotas medianas y grandes que necesitan control, eficiencia y analítica
+                    avanzada.
                   </p>
-                  <p className="text-sm text-text-mid font-medium">Incluye todo lo del Pyme, más:</p>
+                  <p className="text-sm text-text-mid font-medium">
+                    Incluye todo lo del Pyme, más:
+                  </p>
                 </div>
 
                 <ul className="space-y-3 flex-grow my-6">
@@ -193,7 +213,12 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                   ))}
                 </ul>
 
-                <Button variant="primary" size="lg" onClick={onFlotaClick} className="w-full mt-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={onFlotaClick}
+                  className="w-full mt-auto"
+                >
                   Solicitar cotización
                 </Button>
               </Card>

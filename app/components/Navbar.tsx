@@ -68,13 +68,6 @@ export default function GasMyNavbar({
         .gm-brand {
           display: flex;
           align-items: center;
-          gap: 12px;
-        }
-        .gm-logo {
-          width: 32px;
-          height: 32px;
-          display: grid;
-          place-items: center;
         }
         .gm-links {
           display: none;
@@ -138,29 +131,22 @@ export default function GasMyNavbar({
       `}</style>
 
       <div className="gm-container">
-        <a className="gm-brand" href="#" style={{ textDecoration: 'none', color: text }}>
-          <span className="gm-logo" aria-hidden>
-            {/* Gota de petróleo */}
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path
-                d="M16 4C16 4 10 12 10 17C10 20.866 13.134 24 17 24C20.866 24 24 20.866 24 17C24 12 18 4 18 4C17.5 4.5 16.5 4.5 16 4Z"
-                fill="#1a1a1a"
-                stroke="#000000"
-                strokeWidth="0.5"
-              />
-              {/* Brillo en la gota */}
-              <ellipse cx="18" cy="14" rx="2.5" ry="3" fill="rgba(255,255,255,0.3)" />
-            </svg>
-          </span>
-          <span
+        <a
+          className="gm-brand"
+          href="#"
+          style={{ textDecoration: 'none', color: text, display: 'flex', alignItems: 'center' }}
+        >
+          <img
+            src="/logo.png"
+            alt="GasMy"
             style={{
-              fontSize: 22,
-              fontWeight: 500,
-              letterSpacing: '-0.02em',
+              height: '200px',
+              width: 'auto',
+              maxWidth: '1000px',
+              marginLeft: '-40px',
+              marginTop: '-16px',
             }}
-          >
-            GasMy
-          </span>
+          />
         </a>
 
         <div className="gm-links">
