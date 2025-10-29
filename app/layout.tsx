@@ -41,36 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
-      <body>
-        {/* Gradient Spotlight Effect - TEST VISIBLE */}
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: -1,
-            background: '#f8f9fa',
-            pointerEvents: 'none',
-          }}
-        >
-          {/* Spotlight SUPER VISIBLE para test */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '5%',
-              right: '5%',
-              width: '800px',
-              height: '800px',
-              background:
-                'radial-gradient(circle, rgba(0, 102, 255, 0.9) 0%, rgba(0, 68, 255, 0.7) 25%, rgba(0, 51, 204, 0.5) 50%, transparent 80%)',
-              filter: 'blur(100px)',
-            }}
-          />
-        </div>
-        {children}
-      </body>
+      <body className="bg-bg-main text-text-strong antialiased">{children}</body>
     </html>
   );
 }

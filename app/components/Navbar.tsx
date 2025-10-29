@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'framer-motion';
 import { Poppins } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
 const poppins = Poppins({
   weight: ['400', '500', '600'],
@@ -10,211 +10,97 @@ const poppins = Poppins({
   display: 'swap',
 });
 
+const links = [
+  { label: 'Features', href: '#diferenciadores' },
+  { label: 'Planes', href: '#pricing-individuals' },
+  { label: 'Testimonios', href: '#testimonios' },
+  { label: 'Contacto', href: '#contacto' },
+];
+
 interface NavbarProps {
-  bg?: string;
-  text?: string;
-  muted?: string;
-  accent?: string;
   ctaText?: string;
   ctaHref?: string;
   sticky?: boolean;
 }
 
 export default function GasMyNavbar({
-  bg = '#F8F9FA',
-  text = '#111827',
-  muted = 'rgba(17,24,39,0.65)',
-  accent = '#4f7cff',
-  ctaText = 'Inicia sesión',
+  ctaText = 'Inicia sesion',
   ctaHref = '#',
   sticky = true,
 }: NavbarProps) {
   const [open, setOpen] = React.useState(false);
 
-  const links = [
-    { label: 'Features', href: '#diferenciadores' },
-    { label: 'Planes', href: '#pricing-individuals' },
-    { label: 'Testimonios', href: '#testimonios' },
-    { label: 'Contacto', href: '#contacto' },
-  ];
+  const positioningClass = sticky
+    ? 'pointer-events-none fixed left-0 right-0 top-4 z-40 px-4 md:top-6'
+    : 'pointer-events-none relative z-30 px-4';
 
   return (
-    <nav
-      className={poppins.className}
-      style={{
-        position: sticky ? 'sticky' : 'relative',
-        top: 0,
-        zIndex: 100,
-        width: '100%',
-        height: '64px',
-        background: bg,
-        color: text,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderBottom: '1px solid rgba(0,0,0,0.06)',
-      }}
-    >
-      <style jsx>{`
-        .gm-container {
-          width: 100%;
-          max-width: 1200px;
-          padding: 0 16px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-        }
-        .gm-brand {
-          display: flex;
-          align-items: center;
-        }
-        .gm-links {
-          display: none;
-          align-items: center;
-          gap: 22px;
-          font-size: 14px;
-          min-height: 20px;
-          content-visibility: auto;
-        }
-        .gm-cta {
-          display: none;
-          min-width: 120px;
-          min-height: 40px;
-        }
-        .gm-burger {
-          display: inline-flex;
-          background: transparent;
-          border: 0;
-          color: ${text};
-          cursor: pointer;
-          padding: 8px;
-          border-radius: 10px;
-        }
-        .gm-burger:hover {
-          background: rgba(0, 0, 0, 0.04);
-        }
-        .gm-mobile {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 64px;
-          background: ${bg};
-          border-top: 1px solid rgba(0, 0, 0, 0.06);
-          display: ${open ? 'block' : 'none'};
-        }
-        .gm-mobile a {
-          display: block;
-          padding: 14px 18px;
-          color: ${muted};
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .gm-mobile a:hover {
-          color: #0066ff;
-          background: rgba(0, 102, 255, 0.08);
-        }
-        @media (min-width: 768px) {
-          .gm-links {
-            display: flex;
-          }
-          .gm-cta {
-            display: inline-flex;
-          }
-          .gm-burger {
-            display: none;
-          }
-          .gm-mobile {
-            display: none !important;
-          }
-        }
-      `}</style>
+    <header className={cn('flex justify-center', positioningClass, poppins.className)}>
+      <div className="pointer-events-auto w-full max-w-6xl">
+        <div className="relative">
+          <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white shadow-lg shadow-blue-500/20 backdrop-blur-xl transition-all duration-300">
+            <a href="#" className="flex items-center gap-3 text-lg font-semibold text-white">
+              <img src="/logo.png" alt="GasMy" className="h-10 w-auto drop-shadow" />
+            </a>
 
-      <div className="gm-container">
-        <a
-          className="gm-brand"
-          href="#"
-          style={{ textDecoration: 'none', color: text, display: 'flex', alignItems: 'center' }}
-        >
-          <img
-            src="/logo.png"
-            alt="GasMy"
-            style={{
-              height: '200px',
-              width: 'auto',
-              maxWidth: '1000px',
-              marginLeft: '-40px',
-              marginTop: '-16px',
-            }}
-          />
-        </a>
+            <div className="hidden items-center gap-8 text-sm md:flex">
+              {links.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-white/70 transition-colors hover:text-white"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
 
-        <div className="gm-links">
-          {links.map((l) => (
-            <motion.a
-              key={l.href}
-              href={l.href}
-              style={{ color: muted, textDecoration: 'none' }}
-              whileHover={{ color: '#0066ff' }}
-              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+            <div className="hidden md:flex">
+              <a
+                href={ctaHref}
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#1C0AE8] via-[#1D4CFF] to-[#3A8BFF] px-6 py-2 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(28,10,232,0.35)] transition hover:shadow-[0_12px_36px_rgba(28,10,232,0.45)]"
+              >
+                {ctaText}
+              </a>
+            </div>
+
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white shadow-sm backdrop-blur md:hidden"
+              aria-label="Abrir menu"
+              onClick={() => setOpen((prev) => !prev)}
             >
-              {l.label}
-            </motion.a>
-          ))}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+
+          {open && (
+            <div className="absolute left-0 right-0 mt-3 rounded-3xl border border-white/30 bg-white/15 p-4 text-white shadow-xl backdrop-blur-xl md:hidden">
+              <nav className="space-y-2">
+                {links.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-2xl px-4 py-3 text-sm font-medium hover:bg-white/20"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <a
+                  href={ctaHref}
+                  className="block rounded-2xl bg-gradient-to-r from-[#1C0AE8] via-[#1D4CFF] to-[#3A8BFF] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_10px_26px_rgba(28,10,232,0.35)]"
+                  onClick={() => setOpen(false)}
+                >
+                  {ctaText}
+                </a>
+              </nav>
+            </div>
+          )}
         </div>
-
-        <motion.a
-          className="gm-cta"
-          href={ctaHref}
-          style={{
-            textDecoration: 'none',
-            color: '#ffffff',
-            background: 'linear-gradient(135deg, #0066ff 0%, #0052cc 100%)',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: 12,
-            fontSize: 14,
-            fontWeight: 700,
-            lineHeight: 1.2,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            boxShadow: '0 6px 20px rgba(0, 102, 255, 0.5)',
-            willChange: 'transform, box-shadow',
-          }}
-          whileHover={{
-            background: 'linear-gradient(135deg, #0052cc 0%, #0044aa 100%)',
-            y: -2,
-            boxShadow: '0 8px 28px rgba(0, 102, 255, 0.65)',
-          }}
-          whileTap={{ y: 0 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25, duration: 0.3 }}
-        >
-          {ctaText}
-        </motion.a>
-
-        <button className="gm-burger" aria-label="Abrir menú" onClick={() => setOpen(!open)}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M4 6h16M4 12h16M4 18h16"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
       </div>
-
-      <div className="gm-mobile">
-        {links.map((l) => (
-          <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
-            {l.label}
-          </a>
-        ))}
-        <a href={ctaHref} onClick={() => setOpen(false)} style={{ color: text }}>
-          {ctaText}
-        </a>
-      </div>
-    </nav>
+    </header>
   );
 }

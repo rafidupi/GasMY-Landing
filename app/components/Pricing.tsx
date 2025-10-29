@@ -31,7 +31,10 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
 
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-text-strong">
-                Soy conductor particular <span role="img" aria-label="car">🚘</span>
+                Soy conductor particular{' '}
+                <span role="img" aria-label="car">
+                  🚘
+                </span>
               </h3>
             </div>
 
@@ -125,7 +128,10 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-text-strong">
-                Soy empresa o flota <span role="img" aria-label="truck">🚛</span>
+                Soy empresa o flota{' '}
+                <span role="img" aria-label="truck">
+                  🚛
+                </span>
               </h3>
             </div>
 
