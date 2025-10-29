@@ -167,7 +167,7 @@ export default function Aurora(props: AuroraProps) {
     gl.canvas.style.display = 'block';
     renderer.dpr = Math.min(window.devicePixelRatio, 2);
 
-    let program: Program | undefined;
+    let program: any;
 
     function resize() {
       if (!ctn) return;
