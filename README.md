@@ -129,7 +129,7 @@ npm run start
 ```css
 --color-primary: #007AFF;     /* iOS Blue */
 --color-success: #34C759;     /* Verde */
---bg-main: #F8F9FA;           /* Fondo principal */
+--bg-main: #FFFFFF;           /* Fondo principal */
 --bg-card: #FFFFFF;           /* Fondo tarjetas */
 --text-strong: #2C2E30;       /* Texto principal */
 --text-mid: #6E757C;          /* Texto secundario */
