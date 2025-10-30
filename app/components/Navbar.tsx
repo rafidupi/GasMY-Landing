@@ -31,11 +31,12 @@ export default function GasMyNavbar({
   const [open, setOpen] = React.useState(false);
 
   const positioningClass = sticky
-    ? 'pointer-events-none fixed left-0 right-0 top-4 z-40 px-4 md:top-6'
+    ? 'pointer-events-none fixed left-0 right-0 z-40 px-4'
     : 'pointer-events-none relative z-30 px-4';
+  const positioningStyle = sticky ? { top: 'calc(env(safe-area-inset-top) + 1rem)' } : undefined;
 
   return (
-    <header className={cn('flex justify-center', positioningClass, poppins.className)}>
+    <header className={cn('flex justify-center', positioningClass, poppins.className)} style={positioningStyle}>
       <div className="pointer-events-auto w-full max-w-6xl">
         <div className="relative">
           <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white shadow-lg shadow-blue-500/20 backdrop-blur-xl transition-all duration-300">
