@@ -22,10 +22,10 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[100svh] pb-12 pt-[calc(8rem+env(safe-area-inset-top))] md:pb-20 md:pt-[calc(10rem+env(safe-area-inset-top))]">
+    <section className="relative min-h-[100svh] pb-10 pt-[calc(5.5rem+env(safe-area-inset-top))] md:pb-16 md:pt-[calc(7rem+env(safe-area-inset-top))]">
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="space-y-6 text-white">
+        <div className="grid items-center gap-8 lg:grid-cols-2">
+          <div className="space-y-5 text-white">
             <div className="flex flex-wrap gap-3">
               <Badge variant="default">Beta en Santiago RM</Badge>
               <Badge variant="success">Freemium</Badge>
