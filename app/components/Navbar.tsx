@@ -32,24 +32,12 @@ export default function GasMyNavbar({
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
-    const sentinel = document.getElementById('navbar-color-trigger');
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setScrolled(entry.isIntersecting);
-      },
-      {
-        rootMargin: '-120px 0px 0px 0px',
-        threshold: 0,
-      }
-    );
-
-    observer.observe(sentinel);
-
-    return () => {
-      observer.disconnect();
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 120);
     };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const positioningClass = sticky
