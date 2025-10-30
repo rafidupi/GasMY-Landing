@@ -3,6 +3,7 @@
 import { Container } from './Container';
 import { Button } from './Button';
 import { Badge } from './Badge';
+import SplitText from './SplitText';
 import { trackEvent } from '@/lib/analytics';
 
 interface HeroProps {
@@ -32,9 +33,19 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-                Lo que gastas al pisar el acelerador, sin sorpresas.
-              </h1>
+              <SplitText
+                text="Lo que gastas al pisar el acelerador, sin sorpresas."
+                tag="h1"
+                className="w-full text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+                textAlign="left"
+                splitType="chars"
+                delay={40}
+                duration={0.35}
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.2}
+                rootMargin="-80px"
+              />
               <p className="max-w-2xl text-lg text-white/80 md:text-xl">
                 GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto gastas
                 por viaje y por mes.
