@@ -1,5 +1,6 @@
 import { Container } from './Container';
 import { Section } from './Section';
+import { Card } from './Card';
 import { Car, Navigation, FileText } from 'lucide-react';
 
 const steps = [
@@ -23,31 +24,42 @@ const steps = [
 export function HowItWorks() {
   return (
     <Section id="como-funciona" className="bg-bg-main">
-      <Container>
-        <div className="max-w-3xl mx-auto text-center space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-strong">Cómo funciona</h2>
-            <p className="text-lg text-text-mid">
-              Tres pasos simples para tener control total de tus gastos
+      <Container className="max-w-6xl">
+        <div className="grid min-h-[520px] place-items-center gap-10 text-center lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className="space-y-6 max-w-xl">
+            <p className="inline-flex rounded-full border border-border-subtle px-4 py-1 text-sm uppercase tracking-wide text-text-mid">
+              Paso a paso
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-text-strong md:text-4xl">
+              Cómo funciona GasMy
+            </h2>
+            <p className="text-lg text-text-mid md:text-xl">
+              Tres pasos simples para tener control total de tus gastos. Te acompañamos desde que partes el motor hasta el resumen mensual.
+            </p>
+            <p className="text-sm text-text-light">
+              Cada registro se hace en segundo plano, así puedes concentrarte en manejar mientras GasMy lleva la cuenta completa.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="space-y-4">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-primary" />
+          <Card className="w-full max-w-md bg-bg-card border-border-subtle shadow-lg shadow-slate-900/10">
+            <div className="space-y-6">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="space-y-1 text-left">
+                      <p className="text-sm font-semibold text-primary">Paso {index + 1}</p>
+                      <h3 className="text-lg font-semibold text-text-strong">{step.title}</h3>
+                      <p className="text-sm text-text-mid">{step.description}</p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-text-strong">{step.title}</h3>
-                    <p className="text-text-mid">{step.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          </Card>
         </div>
       </Container>
     </Section>

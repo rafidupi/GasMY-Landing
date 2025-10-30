@@ -5,6 +5,7 @@ import GasMyNavbar from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Calculator } from './components/Calculator';
 import { HowItWorks } from './components/HowItWorks';
+import { TagCoverage } from './components/TagCoverage';
 import { Features } from './components/Features';
 import { Pricing } from './components/Pricing';
 import { Testimonials } from './components/Testimonials';
@@ -55,6 +56,7 @@ export default function Home() {
       </section>
 
       <HowItWorks />
+      <TagCoverage />
       <Features />
       <Calculator onResultEmail={() => setBetaFormOpen(true)} />
       <Pricing
