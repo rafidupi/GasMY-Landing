@@ -28,6 +28,10 @@ type ExtendedDocument = Document & {
   fonts?: FontFaceSet;
 };
 
+type SplitHTMLElement = HTMLElement & {
+  _rbsplitInstance?: GSAPSplitText;
+};
+
 const SplitText: React.FC<SplitTextProps> = ({
   text,
   className = '',
@@ -43,7 +47,10 @@ const SplitText: React.FC<SplitTextProps> = ({
   textAlign = 'center',
   onLetterAnimationComplete,
 }) => {
-  const ref = useRef<HTMLElement & { _rbsplitInstance?: GSAPSplitText }>(null);
+  const elementRef = useRef<SplitHTMLElement | null>(null);
+  const setRef = (node: HTMLElement | null) => {
+    elementRef.current = node as SplitHTMLElement | null;
+  };
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -73,7 +80,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 
   useGSAP(
     () => {
-      const element = ref.current;
+      const element = elementRef.current;
       if (!element || !text || !fontsLoaded) return;
 
       if (element._rbsplitInstance) {
@@ -170,7 +177,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         fontsLoaded,
         onLetterAnimationComplete,
       ],
-      scope: ref,
+      scope: elementRef,
     }
   );
 
@@ -185,43 +192,43 @@ const SplitText: React.FC<SplitTextProps> = ({
     switch (tag) {
       case 'h1':
         return (
-          <h1 ref={ref} style={style} className={classes}>
+          <h1 ref={setRef} style={style} className={classes}>
             {text}
           </h1>
         );
       case 'h2':
         return (
-          <h2 ref={ref} style={style} className={classes}>
+          <h2 ref={setRef} style={style} className={classes}>
             {text}
           </h2>
         );
       case 'h3':
         return (
-          <h3 ref={ref} style={style} className={classes}>
+          <h3 ref={setRef} style={style} className={classes}>
             {text}
           </h3>
         );
       case 'h4':
         return (
-          <h4 ref={ref} style={style} className={classes}>
+          <h4 ref={setRef} style={style} className={classes}>
             {text}
           </h4>
         );
       case 'h5':
         return (
-          <h5 ref={ref} style={style} className={classes}>
+          <h5 ref={setRef} style={style} className={classes}>
             {text}
           </h5>
         );
       case 'h6':
         return (
-          <h6 ref={ref} style={style} className={classes}>
+          <h6 ref={setRef} style={style} className={classes}>
             {text}
           </h6>
         );
       default:
         return (
-          <p ref={ref} style={style} className={classes}>
+          <p ref={setRef} style={style} className={classes}>
             {text}
           </p>
         );
