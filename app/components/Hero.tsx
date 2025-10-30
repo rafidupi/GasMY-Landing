@@ -22,7 +22,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
   };
 
   return (
-    <section className="relative pb-12 pt-32 md:pb-20 md:pt-40">
+    <section className="relative min-h-[100svh] pb-12 pt-[calc(8rem+env(safe-area-inset-top))] md:pb-20 md:pt-[calc(10rem+env(safe-area-inset-top))]">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="space-y-6 text-white">

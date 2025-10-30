@@ -104,9 +104,10 @@ void main() {
   float midPoint = 0.12;
   float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
 
-  vec3 auroraColor = intensity * rampColor * uIntensity;
+  vec3 auroraColor = intensity * rampColor;
+  vec3 finalColor = clamp(auroraColor * uIntensity, 0.0, 1.0);
 
-  fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+  fragColor = vec4(finalColor * auroraAlpha, auroraAlpha);
 }
 `;
 
@@ -121,7 +122,7 @@ interface AuroraProps {
 
 export default function Aurora(props: AuroraProps) {
   const {
-    colorStops = ['#1C0AE8', '#3A8BFF', '#6666FF'],
+    colorStops = ['#1C0AE8', '#1C0AE8', '#1C0AE8'],
     amplitude = 1.4,
     blend = 0.85,
     intensity = 1.8,
@@ -143,6 +144,7 @@ export default function Aurora(props: AuroraProps) {
   };
 
   const ctnDom = useRef<HTMLDivElement>(null);
+  const stopsKey = colorStops.join(',');
 
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -157,6 +159,19 @@ export default function Aurora(props: AuroraProps) {
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    if ('UNPACK_COLORSPACE_CONVERSION_WEBGL' in gl) {
+      gl.pixelStorei((gl as WebGLRenderingContext).UNPACK_COLORSPACE_CONVERSION_WEBGL, (gl as any).NONE);
+    }
+    const isWebGL2 =
+      typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
+    const srgbExt = gl.getExtension('EXT_sRGB');
+    if (isWebGL2) {
+      const webgl2 = gl as WebGL2RenderingContext;
+      const FRAMEBUFFER_SRGB = (webgl2 as any).FRAMEBUFFER_SRGB ?? 36281;
+      webgl2.enable(FRAMEBUFFER_SRGB);
+    } else if (srgbExt && 'FRAMEBUFFER_SRGB_EXT' in srgbExt) {
+      gl.enable((srgbExt as any).FRAMEBUFFER_SRGB_EXT);
+    }
     gl.canvas.style.backgroundColor = 'transparent';
     gl.canvas.style.position = 'absolute';
     gl.canvas.style.top = '0';
@@ -192,7 +207,11 @@ export default function Aurora(props: AuroraProps) {
       delete geometry.attributes.uv;
     }
 
-    const colorStopsArray = colorStops.map((hex) => {
+    const activeStops = (propsRef.current.colorStops ?? []) as string[];
+    if (activeStops.length < 3) {
+      activeStops.splice(0, activeStops.length, '#1C0AE8', '#1C0AE8', '#1C0AE8');
+    }
+    const colorStopsArray = activeStops.map((hex) => {
       const c = new Color(hex);
       return [c.r, c.g, c.b];
     });
@@ -222,7 +241,7 @@ export default function Aurora(props: AuroraProps) {
         program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? amplitude;
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
         program.uniforms.uIntensity.value = propsRef.current.intensity ?? intensity;
-        const stops = propsRef.current.colorStops ?? colorStops;
+        const stops = (propsRef.current.colorStops ?? activeStops) as string[];
         program.uniforms.uColorStops.value = stops.map((hex: string) => {
           const c = new Color(hex);
           return [c.r, c.g, c.b];
@@ -243,7 +262,7 @@ export default function Aurora(props: AuroraProps) {
       }
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, []);
+  }, [amplitude, blend, intensity, stopsKey]);
 
   return <div ref={ctnDom} className="relative w-full h-full" />;
 }
