@@ -39,7 +39,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 -z-30 bg-[#0b0b14]" />
         <div className="pointer-events-none absolute inset-0 -z-20">
           <Aurora
-            colorStops={['#1C0AE8', '#3A8BFF', '#6666FF']}
+            colorStops={['#1C0AE8', '#1C0AE8', '#1C0AE8']}
             amplitude={1.4}
             blend={0.85}
             speed={0.6}
@@ -53,6 +53,8 @@ export default function Home() {
           <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />
         </div>
       </section>
+
+      <div id="navbar-color-trigger" className="h-1 w-full" />
 
       <HowItWorks />
       <Features />
