@@ -69,8 +69,28 @@ export function TollMap() {
 
         const data: TollApiResponse = await response.json();
 
+        console.log('API Response structure:', {
+          filesCount: data.files?.length,
+          firstFile: data.files?.[0],
+          firstFileContentType: typeof data.files?.[0]?.content,
+          firstFileContentIsArray: Array.isArray(data.files?.[0]?.content),
+          firstFileContentLength: data.files?.[0]?.content?.length,
+        });
+
         // Flatten all gantries from all files
-        const allGantries = data.files.flatMap((file) => file.content);
+        // The API returns content as a string, so we need to parse it
+        const allGantries = data.files.flatMap((file) => {
+          const content = typeof file.content === 'string' 
+            ? JSON.parse(file.content) 
+            : file.content;
+          return content;
+        });
+        
+        console.log('Total gantries loaded:', allGantries.length);
+        console.log('Sample gantry:', allGantries[0]);
+        console.log('Sample gantry type:', typeof allGantries[0]);
+        console.log('Sample gantry is array?:', Array.isArray(allGantries[0]));
+        
         setGantries(allGantries);
         setLoading(false);
       } catch (err) {
@@ -85,20 +105,41 @@ export function TollMap() {
 
   // Initialize map
   useEffect(() => {
-    if (!mapContainer.current || !MAPBOX_TOKEN) return;
+    if (!mapContainer.current || !MAPBOX_TOKEN) {
+      console.log('Map initialization blocked:', { 
+        container: !!mapContainer.current, 
+        token: !!MAPBOX_TOKEN 
+      });
+      return;
+    }
     if (map.current) return; // Initialize map only once
 
+    console.log('Initializing Mapbox with token:', MAPBOX_TOKEN);
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11',
-      center: [-70.65, -33.45], // Santiago, Chile
-      zoom: 10,
-    });
+    try {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/dark-v11',
+        center: [-70.65, -33.45], // Santiago, Chile
+        zoom: 10,
+      });
 
-    // Add navigation controls
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      console.log('Map created successfully');
+
+      // Add navigation controls
+      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      
+      map.current.on('load', () => {
+        console.log('Map loaded successfully');
+      });
+
+      map.current.on('error', (e) => {
+        console.error('Map error:', e);
+      });
+    } catch (error) {
+      console.error('Failed to create map:', error);
+    }
 
     return () => {
       if (map.current) {
@@ -109,23 +150,42 @@ export function TollMap() {
 
   // Add markers when gantries are loaded
   useEffect(() => {
-    if (!map.current || gantries.length === 0) return;
+    if (!map.current || !gantries || gantries.length === 0) return;
 
-    // Wait for map to load
-    map.current.on('load', () => {
-      gantries.forEach((gantry) => {
+    const addMarkers = () => {
+      if (!gantries || !map.current) return;
+      
+      console.log('Adding markers for', gantries.length, 'gantries');
+      console.log('Map loaded?', map.current.loaded());
+      
+      gantries.forEach((gantry, index) => {
+        if (!gantry) {
+          console.warn(`Gantry ${index} is null/undefined`);
+          return;
+        }
+        
+        console.log(`Gantry ${index} keys:`, Object.keys(gantry));
+        console.log(`Gantry ${index} coordinate:`, gantry.coordinate);
+        
+        if (!gantry.coordinate || !Array.isArray(gantry.coordinate) || gantry.coordinate.length !== 2) {
+          console.warn(`Gantry ${index} (${gantry.id}) has invalid coordinates:`, gantry.coordinate);
+          return;
+        }
+        
         const [lat, lng] = gantry.coordinate;
+        console.log(`Adding marker ${index}: ${gantry.name_display} at [lat:${lat}, lng:${lng}]`);
 
+        // Mapbox uses [lng, lat] order, but our API returns [lat, lng]
         // Create a custom marker element
         const el = document.createElement('div');
         el.className = 'toll-marker';
-        el.style.width = '12px';
-        el.style.height = '12px';
+        el.style.width = '8px';
+        el.style.height = '8px';
         el.style.borderRadius = '50%';
-        el.style.backgroundColor = '#FF6B00';
-        el.style.border = '2px solid #FFFFFF';
+        el.style.backgroundColor = '#3b82f6';
+        el.style.border = '1px solid #FFFFFF';
         el.style.cursor = 'pointer';
-        el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+        el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.3)';
 
         // Create popup
         const popup = new mapboxgl.Popup({
@@ -135,32 +195,38 @@ export function TollMap() {
         }).setHTML(`
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 8px;">
             <h3 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #2C2E30;">
-              ${gantry.name_display}
+              ${gantry.name_display || gantry.name || 'TAG'}
             </h3>
             <p style="margin: 0; font-size: 12px; color: #6E757C;">
-              ${gantry.highway}
+              ${gantry.highway || ''}
             </p>
             <p style="margin: 4px 0 0 0; font-size: 11px; color: #9DA3AA;">
-              ${gantry.lengthKm.toFixed(2)} km
+              ${gantry.lengthKm ? gantry.lengthKm.toFixed(2) + ' km' : ''}
             </p>
           </div>
         `);
 
-        // Add marker to map
-        new mapboxgl.Marker(el)
-          .setLngLat([lng, lat])
-          .setPopup(popup)
-          .addTo(map.current!);
+        // Add marker to map - Mapbox expects [lng, lat] but API returns [lat, lng]
+        // So we need to swap: [lat, lng] -> [lng, lat]
+        new mapboxgl.Marker(el).setLngLat([lng, lat]).setPopup(popup).addTo(map.current!);
       });
-    });
+    };
+
+    // Check if map is already loaded
+    if (map.current.loaded()) {
+      addMarkers();
+    } else {
+      // Wait for map to load
+      map.current.once('load', addMarkers);
+    }
   }, [gantries]);
 
   if (!MAPBOX_TOKEN) {
     return (
       <div className="bg-red-50 border border-red-200 rounded-ios p-4">
         <p className="text-sm text-red-600">
-          <strong>Error:</strong> Mapbox token not configured. Please add
-          NEXT_PUBLIC_MAPBOX_TOKEN to your .env.local file.
+          <strong>Error:</strong> Mapbox token not configured. Please add NEXT_PUBLIC_MAPBOX_TOKEN
+          to your .env.local file.
         </p>
       </div>
     );
@@ -186,17 +252,18 @@ export function TollMap() {
           </div>
         </div>
       )}
-      
+
       <div
         ref={mapContainer}
-        className="w-full h-full rounded-ios overflow-hidden"
+        className="w-full h-full rounded-ios overflow-hidden relative z-0"
         style={{ minHeight: '500px' }}
       />
-      
+
       {!loading && gantries.length > 0 && (
         <div className="absolute bottom-4 left-4 bg-bg-card rounded-ios shadow-lg p-3 z-10">
           <p className="text-xs text-text-mid">
-            <span className="font-semibold text-text-strong">{gantries.length}</span> pórticos TAG cargados
+            <span className="font-semibold text-text-strong">{gantries.length}</span> pórticos TAG
+            cargados
           </p>
         </div>
       )}

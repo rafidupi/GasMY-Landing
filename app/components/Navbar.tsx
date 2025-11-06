@@ -41,9 +41,12 @@ export default function GasMyNavbar({
   }, []);
 
   const positioningClass = sticky
-    ? 'pointer-events-none fixed left-0 right-0 z-40 px-4'
-    : 'pointer-events-none relative z-30 px-4';
-  const positioningStyle = sticky ? { top: 'calc(env(safe-area-inset-top) + 1rem)' } : undefined;
+    ? 'fixed left-0 right-0 px-4'
+    : 'relative z-30 px-4';
+  const positioningStyle = sticky ? { 
+    top: 'calc(env(safe-area-inset-top) + 1rem)',
+    zIndex: 99999
+  } : undefined;
 
   const containerClasses = cn(
     'flex items-center justify-between rounded-full px-6 py-3 backdrop-blur-xl transition-all duration-300',
@@ -73,8 +76,15 @@ export default function GasMyNavbar({
   const logoClasses = cn('flex items-center gap-3 text-lg font-semibold transition-colors', scrolled ? 'text-slate-900' : 'text-white');
 
   return (
-    <header className={cn('flex justify-center', positioningClass, poppins.className)} style={positioningStyle}>
-      <div className="pointer-events-auto w-full max-w-6xl">
+    <header 
+      className={cn('flex justify-center', positioningClass, poppins.className)} 
+      style={{
+        ...positioningStyle,
+        zIndex: 999999,
+        position: sticky ? 'fixed' : 'relative'
+      }}
+    >
+      <div className="w-full max-w-6xl">
         <div className="relative">
           <div className={containerClasses}>
             <a href="#" className={logoClasses}>

@@ -36,6 +36,8 @@ export default function Home() {
 
   return (
     <main className="bg-bg-main text-text-strong">
+      <GasMyNavbar />
+      
       <section className="relative isolate min-h-screen overflow-hidden bg-[#0b0b14]">
         <div className="pointer-events-none absolute inset-0 -z-30 bg-[#0b0b14]" />
         <div className="pointer-events-none absolute inset-0 -z-20">
@@ -50,7 +52,6 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white/15 via-white/5 to-transparent mix-blend-screen" />
 
         <div className="relative z-30">
-          <GasMyNavbar />
           <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />
         </div>
       </section>
