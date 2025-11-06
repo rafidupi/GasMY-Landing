@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Mapbox access token - you'll need to add this to your .env.local
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
+// IMPORTANT: In Next.js client components, env vars must be referenced directly
+// They get replaced at build time, not runtime
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string;
 
 interface TollGantry {
   id: string;
@@ -221,13 +222,25 @@ export function TollMap() {
     }
   }, [gantries]);
 
+  // Debug logging
+  useEffect(() => {
+    console.log('=== MAPBOX TOKEN DEBUG ===');
+    console.log('Token value:', MAPBOX_TOKEN);
+    console.log('Token length:', MAPBOX_TOKEN?.length);
+    console.log('Token type:', typeof MAPBOX_TOKEN);
+    console.log('Token exists:', !!MAPBOX_TOKEN);
+    console.log('Token first 20 chars:', MAPBOX_TOKEN?.substring(0, 20));
+  }, []);
+
   if (!MAPBOX_TOKEN) {
+    console.error('MAPBOX_TOKEN is missing or empty!');
     return (
       <div className="bg-red-50 border border-red-200 rounded-ios p-4">
         <p className="text-sm text-red-600">
           <strong>Error:</strong> Mapbox token not configured. Please add NEXT_PUBLIC_MAPBOX_TOKEN
           to your .env.local file.
         </p>
+        <p className="text-xs text-red-500 mt-2">Debug: Token = {`"${MAPBOX_TOKEN}"`} (length: {MAPBOX_TOKEN?.length || 0})</p>
       </div>
     );
   }
