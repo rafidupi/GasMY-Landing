@@ -3,6 +3,7 @@
 import { Container } from './Container';
 import { Card } from './Card';
 import { Section } from './Section';
+import { TollMap } from './TollMap';
 
 export function TagCoverage() {
   return (
@@ -24,18 +25,8 @@ export function TagCoverage() {
             </p>
           </div>
 
-          <Card className="bg-[#141414] border-white/10 shadow-xl shadow-black/30">
-            <div className="flex aspect-[4/3] w-full items-center justify-center rounded-[18px] bg-gradient-to-br from-[#232323] via-[#1f2a3f] to-[#0b0f1f] text-center text-white/70">
-              <div className="space-y-2 px-6">
-                <p className="text-sm uppercase tracking-[0.2em] text-white/60">Mapa en camino</p>
-                <p className="text-lg font-medium">
-                  Aquí pronto cargaremos el mapa Mapbox con todos los TAG de Santiago.
-                </p>
-                <p className="text-xs text-white/50">
-                  Dejamos el espacio listo para integrar la API y tus datos GeoJSON.
-                </p>
-              </div>
-            </div>
+          <Card className="bg-[#141414] border-white/10 shadow-xl shadow-black/30 p-0 overflow-hidden">
+            <TollMap />
           </Card>
         </div>
       </Container>
