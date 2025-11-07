@@ -18,10 +18,12 @@ export function TagCoverage() {
               ¿Sabías todos los TAG que hay en RM?
             </h2>
             <p className="text-lg text-white/70 md:text-xl">
-              Hay más TAG de lo que vemos. Armamos un mapa con cada pórtico en la Región Metropolitana para que no te pillen de sorpresa.
+              Hay más TAG de lo que vemos. Armamos un mapa con cada pórtico en la Región
+              Metropolitana para que no te pillen de sorpresa.
             </p>
             <p className="text-sm text-white/55">
-              Muy pronto podrás ver horarios, tarifas y rutas recomendadas directamente en este mapa interactivo.
+              Muy pronto podrás ver horarios, tarifas y rutas recomendadas directamente en este mapa
+              interactivo.
             </p>
           </div>
 

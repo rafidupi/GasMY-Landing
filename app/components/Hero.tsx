@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Container } from './Container';
 import { Button } from './Button';
 import { Badge } from './Badge';
@@ -47,8 +48,8 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
                 rootMargin="-80px"
               />
               <p className="max-w-2xl text-lg text-white/80 md:text-xl">
-                GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto gastas
-                por viaje y por mes.
+                GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto
+                gastas por viaje y por mes.
               </p>
             </div>
 
@@ -62,18 +63,28 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             </div>
 
             <p className="text-sm text-white/60">
-              Tu auto te cuesta mas de lo que crees. GasMy lo hace visible para que puedas optimizar.
+              Tu auto te cuesta mas de lo que crees. GasMy lo hace visible para que puedas
+              optimizar.
             </p>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md lg:max-w-lg">
+          <div className="flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 1.2,
+                delay: 0.3,
+                ease: [0.21, 0.47, 0.32, 0.98],
+              }}
+              className="relative w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-[300px]"
+            >
               <img
-                src="/iphone-mockup.png"
+                src="/mockup7.png"
                 alt="GasMy App en iPhone mostrando TAG BIP y gastos"
                 className="h-auto w-full object-contain drop-shadow-[0_40px_120px_rgba(28,10,232,0.35)]"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </Container>
