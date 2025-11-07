@@ -40,13 +40,13 @@ export default function GasMyNavbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const positioningClass = sticky
-    ? 'fixed left-0 right-0 px-4'
-    : 'relative z-30 px-4';
-  const positioningStyle = sticky ? { 
-    top: 'calc(env(safe-area-inset-top) + 1rem)',
-    zIndex: 99999
-  } : undefined;
+  const positioningClass = sticky ? 'fixed left-0 right-0 px-4' : 'relative z-30 px-4';
+  const positioningStyle = sticky
+    ? {
+        top: 'calc(env(safe-area-inset-top) + 1rem)',
+        zIndex: 99999,
+      }
+    : undefined;
 
   const containerClasses = cn(
     'flex items-center justify-between rounded-full px-6 py-3 backdrop-blur-xl transition-all duration-300',
@@ -71,17 +71,21 @@ export default function GasMyNavbar({
     ? 'block rounded-2xl px-4 py-3 text-sm font-medium hover:bg-slate-100'
     : 'block rounded-2xl px-4 py-3 text-sm font-medium hover:bg-white/20';
 
-  const mobileCtaClasses = 'block rounded-2xl bg-gradient-to-r from-[#1C0AE8] via-[#1D4CFF] to-[#3A8BFF] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_10px_26px_rgba(28,10,232,0.3)]';
+  const mobileCtaClasses =
+    'block rounded-2xl bg-gradient-to-r from-[#1C0AE8] via-[#1D4CFF] to-[#3A8BFF] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_10px_26px_rgba(28,10,232,0.3)]';
 
-  const logoClasses = cn('flex items-center gap-3 text-lg font-semibold transition-colors', scrolled ? 'text-slate-900' : 'text-white');
+  const logoClasses = cn(
+    'flex items-center gap-3 text-lg font-semibold transition-colors',
+    scrolled ? 'text-slate-900' : 'text-white'
+  );
 
   return (
-    <header 
-      className={cn('flex justify-center', positioningClass, poppins.className)} 
+    <header
+      className={cn('flex justify-center', positioningClass, poppins.className)}
       style={{
         ...positioningStyle,
         zIndex: 999999,
-        position: sticky ? 'fixed' : 'relative'
+        position: sticky ? 'fixed' : 'relative',
       }}
     >
       <div className="w-full max-w-6xl">
@@ -114,7 +118,14 @@ export default function GasMyNavbar({
               aria-label="Abrir menu"
               onClick={() => setOpen((prev) => !prev)}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
               </svg>
             </button>
@@ -124,7 +135,12 @@ export default function GasMyNavbar({
             <div className={mobileContainerClasses}>
               <nav className="space-y-2">
                 {links.map((item) => (
-                  <a key={item.href} href={item.href} className={mobileLinkClasses} onClick={() => setOpen(false)}>
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={mobileLinkClasses}
+                    onClick={() => setOpen(false)}
+                  >
                     {item.label}
                   </a>
                 ))}

@@ -88,17 +88,16 @@ export function TollMap() {
         // Flatten all gantries from all files
         // The API returns content as a string, so we need to parse it
         const allGantries = data.files.flatMap((file) => {
-          const content = typeof file.content === 'string' 
-            ? JSON.parse(file.content) 
-            : file.content;
+          const content =
+            typeof file.content === 'string' ? JSON.parse(file.content) : file.content;
           return content;
         });
-        
+
         console.log('Total gantries loaded:', allGantries.length);
         console.log('Sample gantry:', allGantries[0]);
         console.log('Sample gantry type:', typeof allGantries[0]);
         console.log('Sample gantry is array?:', Array.isArray(allGantries[0]));
-        
+
         setGantries(allGantries);
         setLoading(false);
       } catch (err) {
@@ -114,9 +113,9 @@ export function TollMap() {
   // Initialize map
   useEffect(() => {
     if (!mapContainer.current || !MAPBOX_TOKEN) {
-      console.log('Map initialization blocked:', { 
-        container: !!mapContainer.current, 
-        token: !!MAPBOX_TOKEN 
+      console.log('Map initialization blocked:', {
+        container: !!mapContainer.current,
+        token: !!MAPBOX_TOKEN,
       });
       return;
     }
@@ -137,7 +136,7 @@ export function TollMap() {
 
       // Add navigation controls
       map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-      
+
       map.current.on('load', () => {
         console.log('Map loaded successfully');
       });
@@ -162,24 +161,31 @@ export function TollMap() {
 
     const addMarkers = () => {
       if (!gantries || !map.current) return;
-      
+
       console.log('Adding markers for', gantries.length, 'gantries');
       console.log('Map loaded?', map.current.loaded());
-      
+
       gantries.forEach((gantry, index) => {
         if (!gantry) {
           console.warn(`Gantry ${index} is null/undefined`);
           return;
         }
-        
+
         console.log(`Gantry ${index} keys:`, Object.keys(gantry));
         console.log(`Gantry ${index} coordinate:`, gantry.coordinate);
-        
-        if (!gantry.coordinate || !Array.isArray(gantry.coordinate) || gantry.coordinate.length !== 2) {
-          console.warn(`Gantry ${index} (${gantry.id}) has invalid coordinates:`, gantry.coordinate);
+
+        if (
+          !gantry.coordinate ||
+          !Array.isArray(gantry.coordinate) ||
+          gantry.coordinate.length !== 2
+        ) {
+          console.warn(
+            `Gantry ${index} (${gantry.id}) has invalid coordinates:`,
+            gantry.coordinate
+          );
           return;
         }
-        
+
         const [lat, lng] = gantry.coordinate;
         console.log(`Adding marker ${index}: ${gantry.name_display} at [lat:${lat}, lng:${lng}]`);
 

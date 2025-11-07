@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <main className="bg-bg-main text-text-strong">
       <GasMyNavbar />
-      
+
       <section className="relative isolate min-h-screen overflow-hidden bg-[#0b0b14]">
         <div className="pointer-events-none absolute inset-0 -z-30 bg-[#0b0b14]" />
         <div className="pointer-events-none absolute inset-0 -z-20">
