@@ -271,15 +271,6 @@ export function TollMap() {
         className="w-full h-full rounded-ios overflow-hidden relative z-0"
         style={{ minHeight: '500px' }}
       />
-
-      {!loading && gantries.length > 0 && (
-        <div className="absolute bottom-4 left-4 bg-bg-card rounded-ios shadow-lg p-3 z-10">
-          <p className="text-xs text-text-mid">
-            <span className="font-semibold text-text-strong">{gantries.length}</span> pórticos TAG
-            cargados
-          </p>
-        </div>
-      )}
     </div>
   );
 }
