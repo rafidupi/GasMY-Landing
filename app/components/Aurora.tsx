@@ -125,7 +125,9 @@ export default function Aurora(props: AuroraProps) {
     colorStops = ['#1C0AE8', '#1C0AE8', '#1C0AE8'],
     amplitude = 1.4,
     blend = 0.85,
-    intensity = 1.8,
+    // Reduced from 1.8 to 1.3 to avoid aggressive clipping on HDR/wide-gamut displays
+    // which can cause hue shifts on Apple devices with Display P3
+    intensity = 1.3,
   } = props;
   const propsRef = useRef<AuroraProps>({
     ...props,
@@ -140,7 +142,7 @@ export default function Aurora(props: AuroraProps) {
     colorStops,
     amplitude,
     blend,
-    intensity,
+    intensity: intensity ?? 1.3,
   };
 
   const ctnDom = useRef<HTMLDivElement>(null);
@@ -160,8 +162,16 @@ export default function Aurora(props: AuroraProps) {
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
     if ('UNPACK_COLORSPACE_CONVERSION_WEBGL' in gl) {
-      gl.pixelStorei((gl as WebGLRenderingContext).UNPACK_COLORSPACE_CONVERSION_WEBGL, (gl as any).NONE);
+      gl.pixelStorei(
+        (gl as WebGLRenderingContext).UNPACK_COLORSPACE_CONVERSION_WEBGL,
+        (gl as any).NONE
+      );
     }
+
+    // Disabled FRAMEBUFFER_SRGB to keep the color pipeline in simple sRGB
+    // This reduces color discrepancies between Apple (Display P3) and non-Apple devices
+    // by avoiding double gamma correction which causes magenta/washed-out shifts on HDR displays
+    /*
     const isWebGL2 =
       typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
     const srgbExt = gl.getExtension('EXT_sRGB');
@@ -172,6 +182,8 @@ export default function Aurora(props: AuroraProps) {
     } else if (srgbExt && 'FRAMEBUFFER_SRGB_EXT' in srgbExt) {
       gl.enable((srgbExt as any).FRAMEBUFFER_SRGB_EXT);
     }
+    */
+
     gl.canvas.style.backgroundColor = 'transparent';
     gl.canvas.style.position = 'absolute';
     gl.canvas.style.top = '0';
@@ -225,7 +237,7 @@ export default function Aurora(props: AuroraProps) {
         uColorStops: { value: colorStopsArray },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
-        uIntensity: { value: intensity },
+        uIntensity: { value: intensity ?? 1.3 },
       },
     });
 
@@ -240,7 +252,7 @@ export default function Aurora(props: AuroraProps) {
         program.uniforms.uTime.value = time * speed * 0.1;
         program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? amplitude;
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
-        program.uniforms.uIntensity.value = propsRef.current.intensity ?? intensity;
+        program.uniforms.uIntensity.value = propsRef.current.intensity ?? 1.3;
         const stops = (propsRef.current.colorStops ?? activeStops) as string[];
         program.uniforms.uColorStops.value = stops.map((hex: string) => {
           const c = new Color(hex);
