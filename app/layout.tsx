@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
       'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes. Freemium con 7 días gratis.',
     url: 'https://gasmy.org',
-    siteName: 'GasMy',
+    siteName: 'gasmy.',
     locale: 'es_CL',
     type: 'website',
     images: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'GasMy - Tu gasto en auto, ordenado y optimizado',
+        alt: 'gasmy. - Tu gasto en auto, ordenado y optimizado',
       },
     ],
   },

@@ -10,12 +10,12 @@ const poppins = Poppins({
 
 export function Footer() {
   return (
-    <footer id="contacto" className={`bg-text-strong text-white py-12 ${poppins.className}`}>
+    <footer id="contacto" className={`bg-[#1b1b1b] text-white py-12 rounded-t-[32px] ${poppins.className}`}>
       <Container>
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">GasMy</h3>
+            <h3 className="text-xl font-bold">gasmy.</h3>
             <p className="text-white/70 text-sm">Tu gasto en auto, ordenado y optimizado.</p>
           </div>
 
@@ -97,7 +97,7 @@ export function Footer() {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-white/60">
-              © {new Date().getFullYear()} GasMy — Hecho en Chile con cariño por gente bacán.
+              © {new Date().getFullYear()} gasmy. — Hecho en Chile con cariño por gente bacán.
             </p>
 
             <div className="flex flex-col md:flex-row items-center gap-4">

@@ -20,8 +20,8 @@ const faqs = [
     answer: 'Similar a apps de navegación.',
   },
   {
-    question: '¿Por qué GasMy si ya uso Waze/Maps?',
-    answer: 'Ellos te guían; GasMy te muestra el costo y tu historial.',
+    question: '¿Por qué gasmy. si ya uso Waze/Maps?',
+    answer: 'Ellos te guían; gasmy. te muestra el costo y tu historial.',
   },
   {
     question: '¿Detecta todos los pórticos?',

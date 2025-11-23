@@ -36,7 +36,7 @@ export function Features() {
               Qué nos hace excepcionales
             </h2>
             <p className="text-lg text-text-mid max-w-2xl mx-auto">
-              Tu auto te cuesta más de lo que crees. GasMy lo hace visible para que puedas
+              Tu auto te cuesta más de lo que crees. gasmy. lo hace visible para que puedas
               optimizar.
             </p>
           </div>
