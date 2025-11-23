@@ -1,8 +1,9 @@
 export interface BetaFormData {
   email: string;
-  nombre?: string;
+  nombre: string;
   tipoUsuario: string;
-  comuna?: string;
+  comuna: string;
+  sistemaOperativo?: string;
 }
 
 export interface FlotaFormData {
@@ -26,8 +27,20 @@ export function validateBetaForm(data: BetaFormData): { valid: boolean; errors: 
     errors.push('El correo electrónico no es válido');
   }
 
+  if (!data.nombre || !data.nombre.trim()) {
+    errors.push('El nombre es requerido');
+  }
+
   if (!data.tipoUsuario || !data.tipoUsuario.trim()) {
     errors.push('Debes seleccionar un tipo de usuario');
+  }
+
+  if (!data.comuna || !data.comuna.trim()) {
+    errors.push('Debes seleccionar una comuna');
+  }
+
+  if (!data.sistemaOperativo || !data.sistemaOperativo.trim()) {
+    errors.push('Debes seleccionar un sistema operativo');
   }
 
   return {

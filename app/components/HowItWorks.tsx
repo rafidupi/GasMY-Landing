@@ -7,7 +7,7 @@ const steps = [
   {
     icon: Car,
     title: 'Inicia tracking',
-    description: 'Activa el autotracking con bluetooth',
+    description: 'Activa el autotracking con bluetooth.',
   },
   {
     icon: Navigation,
