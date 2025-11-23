@@ -23,7 +23,7 @@ const tipoUsuarioOptions = [
 ];
 
 const comunaOptions = [
-  { value: '', label: 'Selecciona tu comuna (opcional)' },
+  { value: '', label: 'Selecciona tu comuna' },
   { value: 'santiago', label: 'Santiago Centro' },
   { value: 'providencia', label: 'Providencia' },
   { value: 'las-condes', label: 'Las Condes' },
@@ -35,12 +35,19 @@ const comunaOptions = [
   { value: 'otra', label: 'Otra' },
 ];
 
+const sistemaOperativoOptions = [
+  { value: '', label: 'Selecciona tu sistema' },
+  { value: 'ios', label: 'iOS' },
+  { value: 'android', label: 'Android' },
+];
+
 export function BetaForm({ isOpen, onClose }: BetaFormProps) {
   const [formData, setFormData] = useState<BetaFormData>({
     email: '',
     nombre: '',
     tipoUsuario: '',
     comuna: '',
+    sistemaOperativo: '',
   });
 
   const [errors, setErrors] = useState<string[]>([]);
@@ -78,7 +85,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
       setTimeout(() => {
         onClose();
         setSuccess(false);
-        setFormData({ email: '', nombre: '', tipoUsuario: '', comuna: '' });
+        setFormData({ email: '', nombre: '', tipoUsuario: '', comuna: '', sistemaOperativo: '' });
       }, 3000);
     } catch (error) {
       setErrors(['Hubo un error al enviar el formulario. Por favor, intenta de nuevo.']);
@@ -90,7 +97,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000000] p-4">
       <div className="bg-bg-card rounded-ios-lg max-w-md w-full p-6 md:p-8 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
@@ -142,10 +149,11 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
 
               <Input
                 type="text"
-                label="Nombre (opcional)"
+                label="Nombre *"
                 placeholder="Tu nombre"
                 value={formData.nombre}
                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                error={errors.find(e => e.includes('nombre')) || ''}
               />
 
               <Select
@@ -157,10 +165,19 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
               />
 
               <Select
-                label="Comuna"
+                label="Comuna *"
                 options={comunaOptions}
                 value={formData.comuna || ''}
                 onChange={(e) => setFormData({ ...formData, comuna: e.target.value })}
+                error={errors.find(e => e.includes('comuna')) || ''}
+              />
+
+              <Select
+                label="Sistema operativo *"
+                options={sistemaOperativoOptions}
+                value={formData.sistemaOperativo || ''}
+                onChange={(e) => setFormData({ ...formData, sistemaOperativo: e.target.value })}
+                error={errors.find(e => e.includes('sistema')) || ''}
               />
 
               {errors.length > 0 && !errors.some(e => e.includes('correo') || e.includes('tipo')) && (

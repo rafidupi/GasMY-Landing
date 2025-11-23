@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 const links = [
   { label: 'Features', href: '#diferenciadores' },
-  { label: 'Planes', href: '#pricing-individuals' },
+  { label: 'Planes', href: '#pricing' },
   { label: 'Testimonios', href: '#testimonios' },
   { label: 'Contacto', href: '#contacto' },
 ];
