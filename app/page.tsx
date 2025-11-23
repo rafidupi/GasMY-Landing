@@ -14,7 +14,6 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { BetaForm } from './components/BetaForm';
 import { FlotaForm } from './components/FlotaForm';
-import Aurora from './components/Aurora';
 import { initGA, initMetaPixel, trackEvent } from '@/lib/analytics';
 
 export default function Home() {
@@ -38,19 +37,7 @@ export default function Home() {
     <main className="bg-bg-main text-text-strong">
       <GasMyNavbar />
 
-      <section className="relative isolate min-h-screen overflow-hidden bg-[#0b0b14]">
-        <div className="pointer-events-none absolute inset-0 -z-30 bg-[#0b0b14]" />
-        <div className="pointer-events-none absolute inset-0 -z-20">
-          <Aurora
-            colorStops={['#1C0AE8', '#3A8BFF', '#6666FF']}
-            amplitude={1.4}
-            blend={0.85}
-            speed={0.6}
-            intensity={1.8}
-          />
-        </div>
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white/15 via-white/5 to-transparent mix-blend-screen" />
-
+      <section className="relative isolate min-h-screen overflow-hidden aurora-bg">
         <div className="relative z-30">
           <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />
         </div>
