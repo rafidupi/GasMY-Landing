@@ -7,7 +7,7 @@ const steps = [
   {
     icon: Car,
     title: 'Inicia tracking',
-    description: 'Activa GasMy antes de conducir.',
+    description: 'Activa el autotracking con bluetooth',
   },
   {
     icon: Navigation,
@@ -31,13 +31,13 @@ export function HowItWorks() {
               Paso a paso
             </p>
             <h2 className="text-3xl font-bold leading-tight text-text-strong md:text-4xl">
-              Cómo funciona GasMy
+              Cómo funciona gasmy.
             </h2>
             <p className="text-lg text-text-mid md:text-xl">
               Tres pasos simples para tener control total de tus gastos. Te acompañamos desde que partes el motor hasta el resumen mensual.
             </p>
             <p className="text-sm text-text-light">
-              Cada registro se hace en segundo plano, así puedes concentrarte en manejar mientras GasMy lleva la cuenta completa.
+              Cada registro se hace en segundo plano, así puedes concentrarte en manejar mientras gasmy. lleva la cuenta completa.
             </p>
           </div>
 

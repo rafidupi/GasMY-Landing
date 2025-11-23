@@ -163,7 +163,7 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
 
                   {/* Con GasMy */}
                   <div className="bg-gradient-to-br from-grad-start to-grad-end rounded-ios p-5 text-white">
-                    <p className="text-sm text-white/80 mb-1">Con GasMy</p>
+    <p className="text-sm text-white/80 mb-1">Con gasmy.</p>
                     <p className="text-3xl font-bold">
                       {formatCLP(results.costoConGasMy)}
                     </p>
@@ -191,7 +191,7 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
 
                 <div className="bg-yellow-50 border border-yellow-200 rounded-ios p-4">
                   <p className="text-sm text-yellow-800">
-                    <strong>Disclaimer:</strong> Cálculo referencial. GasMy no promete un % fijo de ahorro; te ayuda a medir y optimizar tus gastos.
+                    <strong>Disclaimer:</strong> Cálculo referencial. gasmy. no promete un % fijo de ahorro; te ayuda a medir y optimizar tus gastos.
                   </p>
                 </div>
 

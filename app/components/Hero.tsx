@@ -48,7 +48,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
                 rootMargin="-80px"
               />
               <p className="max-w-2xl text-lg text-white/80 md:text-xl">
-                GasMy registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto
+                gasmy. registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto
                 gastas por viaje y por mes.
               </p>
             </div>
@@ -63,7 +63,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             </div>
 
             <p className="text-sm text-white/60">
-              Tu auto te cuesta mas de lo que crees. GasMy lo hace visible para que puedas
+              Tu auto te cuesta mas de lo que crees. gasmy. lo hace visible para que puedas
               optimizar.
             </p>
           </div>
@@ -81,7 +81,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             >
               <img
                 src="/mockup7.png"
-                alt="GasMy App en iPhone mostrando TAG BIP y gastos"
+                alt="gasmy. App en iPhone mostrando TAG BIP y gastos"
                 className="h-auto w-full object-contain drop-shadow-[0_40px_120px_rgba(28,10,232,0.35)]"
               />
             </motion.div>

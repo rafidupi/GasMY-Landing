@@ -92,7 +92,7 @@ export default function GasMyNavbar({
         <div className="relative">
           <div className={containerClasses}>
             <a href="#" className={logoClasses}>
-              <img src="/logo.png" alt="GasMy" className="h-10 w-auto drop-shadow" />
+              <img src="/logo.png" alt="gasmy." className="h-10 w-auto drop-shadow" />
             </a>
 
             <div className="hidden items-center gap-8 text-sm md:flex">
