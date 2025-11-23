@@ -160,7 +160,9 @@ export default function Aurora(props: AuroraProps) {
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    // Use standard premultiplied-alpha blending instead of additive blending
+    // This reduces color mixing inconsistencies across devices (especially Apple HDR/P3)
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     if ('UNPACK_COLORSPACE_CONVERSION_WEBGL' in gl) {
       gl.pixelStorei(
         (gl as WebGLRenderingContext).UNPACK_COLORSPACE_CONVERSION_WEBGL,
