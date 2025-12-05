@@ -4,8 +4,32 @@ import { Container } from './Container';
 import { Card } from './Card';
 import { Section } from './Section';
 import { TollMap } from './TollMap';
+import { useRef, useState } from 'react';
+import CountUp from './CountUp';
 
 export function TagCoverage() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateXValue = ((y - centerY) / centerY) * -10;
+    const rotateYValue = ((x - centerX) / centerX) * 10;
+    setRotateX(rotateXValue);
+    setRotateY(rotateYValue);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
   return (
     <Section id="tag-coverage" className="bg-[#1b1b1b] text-white">
       <Container className="max-w-6xl">
@@ -15,21 +39,39 @@ export function TagCoverage() {
               Cobertura TAG RM
             </p>
             <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
-              ¿Sabías todos los TAG que hay en RM?
+              ¿Sabías cuántos TAG hay en la Región Metropolitana?
             </h2>
-            <p className="text-lg text-white/70 md:text-xl">
-              Hay más TAG de lo que vemos. Armamos un mapa con cada pórtico en la Región
-              Metropolitana para que no te pillen de sorpresa.
+            <p className="text-lg text-white/90 md:text-xl font-medium">
+              Son más de los que imaginas
             </p>
-            <p className="text-sm text-white/55">
-              Muy pronto podrás ver horarios, tarifas y rutas recomendadas directamente en este mapa
-              interactivo.
+            <div className="flex items-center gap-2">
+              <CountUp from={0} to={223} duration={2} className="text-2xl text-white font-bold" />
+              <span className="text-2xl text-white font-bold">pórticos solo en la RM</span>
+            </div>
+            <p className="text-base text-white/70">
+              Partimos por la RM y pronto llegaremos a todo Chile. Estamos mapeando pórtico por
+              pórtico, para que cada kilómetro que manejes lo hagas tranquilo y sin sorpresas.
             </p>
           </div>
 
-          <Card className="bg-[#141414] border-white/10 shadow-xl shadow-black/30 p-0 overflow-hidden">
-            <TollMap />
-          </Card>
+          <div
+            style={{ perspective: '1000px' }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div
+              ref={cardRef}
+              style={{
+                transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.1s ease-out',
+              }}
+            >
+              <Card className="bg-[#141414] border-white/10 shadow-xl shadow-black/30 p-0 overflow-hidden">
+                <TollMap />
+              </Card>
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

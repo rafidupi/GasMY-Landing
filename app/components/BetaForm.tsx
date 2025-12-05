@@ -130,12 +130,8 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
           </div>
         ) : (
           <>
-            <h3 className="text-2xl font-bold text-text-strong mb-2">
-              Únete a la beta
-            </h3>
-            <p className="text-text-mid mb-6">
-              Completa el formulario y te contactaremos pronto.
-            </p>
+            <h3 className="text-2xl font-bold text-text-strong mb-2">Únete a la beta</h3>
+            <p className="text-text-mid mb-6">Completa el formulario y te contactaremos pronto.</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input
@@ -144,7 +140,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
                 placeholder="tu@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                error={errors.find(e => e.includes('correo')) || ''}
+                error={errors.find((e) => e.includes('correo')) || ''}
               />
 
               <Input
@@ -153,7 +149,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
                 placeholder="Tu nombre"
                 value={formData.nombre}
                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                error={errors.find(e => e.includes('nombre')) || ''}
+                error={errors.find((e) => e.includes('nombre')) || ''}
               />
 
               <Select
@@ -161,7 +157,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
                 options={tipoUsuarioOptions}
                 value={formData.tipoUsuario}
                 onChange={(e) => setFormData({ ...formData, tipoUsuario: e.target.value })}
-                error={errors.find(e => e.includes('tipo de usuario')) || ''}
+                error={errors.find((e) => e.includes('tipo de usuario')) || ''}
               />
 
               <Select
@@ -169,7 +165,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
                 options={comunaOptions}
                 value={formData.comuna || ''}
                 onChange={(e) => setFormData({ ...formData, comuna: e.target.value })}
-                error={errors.find(e => e.includes('comuna')) || ''}
+                error={errors.find((e) => e.includes('comuna')) || ''}
               />
 
               <Select
@@ -177,18 +173,19 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
                 options={sistemaOperativoOptions}
                 value={formData.sistemaOperativo || ''}
                 onChange={(e) => setFormData({ ...formData, sistemaOperativo: e.target.value })}
-                error={errors.find(e => e.includes('sistema')) || ''}
+                error={errors.find((e) => e.includes('sistema')) || ''}
               />
 
-              {errors.length > 0 && !errors.some(e => e.includes('correo') || e.includes('tipo')) && (
-                <div className="bg-red-50 border border-red-200 rounded-ios p-3">
-                  {errors.map((error, index) => (
-                    <p key={index} className="text-sm text-red-600">
-                      {error}
-                    </p>
-                  ))}
-                </div>
-              )}
+              {errors.length > 0 &&
+                !errors.some((e) => e.includes('correo') || e.includes('tipo')) && (
+                  <div className="bg-red-50 border border-red-200 rounded-ios p-3">
+                    {errors.map((error, index) => (
+                      <p key={index} className="text-sm text-red-600">
+                        {error}
+                      </p>
+                    ))}
+                  </div>
+                )}
 
               <Button
                 type="submit"

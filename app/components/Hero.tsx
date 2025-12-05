@@ -9,18 +9,12 @@ import { trackEvent } from '@/lib/analytics';
 
 interface HeroProps {
   onCtaBeta: () => void;
-  onCtaCalc: () => void;
 }
 
-export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
+export function Hero({ onCtaBeta }: HeroProps) {
   const handleBetaClick = () => {
     trackEvent.clickCtaBeta();
     onCtaBeta();
-  };
-
-  const handleCalcClick = () => {
-    trackEvent.clickCtaCalc();
-    onCtaCalc();
   };
 
   return (
@@ -37,7 +31,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
               <SplitText
                 text="Lo que gastas al pisar el acelerador, sin sorpresas."
                 tag="h1"
-                className="w-full text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+                className="w-full text-balance text-4xl font-bold leading-tight text-gray-900 md:text-5xl lg:text-6xl"
                 textAlign="left"
                 splitType="chars"
                 delay={40}
@@ -47,7 +41,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
                 threshold={0.2}
                 rootMargin="-80px"
               />
-              <p className="max-w-2xl text-lg text-white/80 md:text-xl">
+              <p className="max-w-2xl text-lg text-gray-600 md:text-xl">
                 gasmy. registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto
                 gastas por viaje y por mes.
               </p>
@@ -56,9 +50,6 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button variant="primary" size="lg" onClick={handleBetaClick}>
                 Unete a la beta
-              </Button>
-              <Button variant="outline" size="lg" onClick={handleCalcClick}>
-                Ir a la calculadora
               </Button>
             </div>
 
@@ -82,7 +73,7 @@ export function Hero({ onCtaBeta, onCtaCalc }: HeroProps) {
               <img
                 src="/mockup7.png"
                 alt="gasmy. App en iPhone mostrando TAG BIP y gastos"
-                className="h-auto w-full object-contain drop-shadow-[0_40px_120px_rgba(28,10,232,0.35)]"
+                className="h-auto w-full object-contain drop-shadow-[0_20px_60px_rgba(28,10,232,0.15)]"
               />
             </motion.div>
           </div>

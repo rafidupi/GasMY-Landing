@@ -3,12 +3,12 @@
 import { useEffect, useState } from 'react';
 import GasMyNavbar from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Calculator } from './components/Calculator';
 import { HowItWorks } from './components/HowItWorks';
 import { TagCoverage } from './components/TagCoverage';
 import { Features } from './components/Features';
 import { Pricing } from './components/Pricing';
 import { Testimonials } from './components/Testimonials';
+import { ScrollCar } from './components/ScrollCar';
 import { Roadmap } from './components/Roadmap';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
@@ -26,27 +26,20 @@ export default function Home() {
     trackEvent.viewHero();
   }, []);
 
-  const scrollToCalculator = () => {
-    const calcElement = document.getElementById('calculadora');
-    if (calcElement) {
-      calcElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <main className="bg-bg-main text-text-strong">
       <GasMyNavbar />
 
       <section className="relative isolate min-h-screen overflow-hidden aurora-bg">
         <div className="relative z-30">
-          <Hero onCtaBeta={() => setBetaFormOpen(true)} onCtaCalc={scrollToCalculator} />
+          <Hero onCtaBeta={() => setBetaFormOpen(true)} />
         </div>
       </section>
 
       <HowItWorks />
       <TagCoverage />
       <Features />
-      <Calculator onResultEmail={() => setBetaFormOpen(true)} />
+      <ScrollCar />
       <Pricing
         onBetaClick={() => setBetaFormOpen(true)}
         onFlotaClick={() => setFlotaFormOpen(true)}

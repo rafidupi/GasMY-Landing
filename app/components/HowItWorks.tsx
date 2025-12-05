@@ -1,7 +1,10 @@
+'use client';
+
 import { Container } from './Container';
 import { Section } from './Section';
 import { Card } from './Card';
 import { Car, Navigation, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const steps = [
   {
@@ -26,7 +29,13 @@ export function HowItWorks() {
     <Section id="como-funciona" className="bg-bg-main">
       <Container className="max-w-6xl">
         <div className="grid min-h-[520px] place-items-center gap-10 text-center lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-          <div className="space-y-6 max-w-xl">
+          <motion.div
+            className="space-y-6 max-w-xl"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <p className="inline-flex rounded-full border border-border-subtle px-4 py-1 text-sm uppercase tracking-wide text-text-mid">
               Paso a paso
             </p>
@@ -34,32 +43,41 @@ export function HowItWorks() {
               Cómo funciona gasmy.
             </h2>
             <p className="text-lg text-text-mid md:text-xl">
-              Tres pasos simples para tener control total de tus gastos. Te acompañamos desde que partes el motor hasta el resumen mensual.
+              Tres pasos simples para tener control total de tus gastos. Te acompañamos desde que
+              partes el motor hasta el resumen mensual.
             </p>
             <p className="text-sm text-text-light">
-              Cada registro se hace en segundo plano, así puedes concentrarte en manejar mientras gasmy. lleva la cuenta completa.
+              Cada registro se hace en segundo plano, así puedes concentrarte en manejar mientras
+              gasmy. lleva la cuenta completa.
             </p>
-          </div>
+          </motion.div>
 
-          <Card className="w-full max-w-md bg-bg-card border-border-subtle shadow-lg shadow-slate-900/10">
-            <div className="space-y-6">
-              {steps.map((step, index) => {
-                const Icon = step.icon;
-                return (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Icon className="h-6 w-6 text-primary" />
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <Card className="w-full max-w-md bg-bg-card border-border-subtle shadow-lg shadow-slate-900/10">
+              <div className="space-y-6">
+                {steps.map((step, index) => {
+                  const Icon = step.icon;
+                  return (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="space-y-1 text-left">
+                        <p className="text-sm font-semibold text-primary">Paso {index + 1}</p>
+                        <h3 className="text-lg font-semibold text-text-strong">{step.title}</h3>
+                        <p className="text-sm text-text-mid">{step.description}</p>
+                      </div>
                     </div>
-                    <div className="space-y-1 text-left">
-                      <p className="text-sm font-semibold text-primary">Paso {index + 1}</p>
-                      <h3 className="text-lg font-semibold text-text-strong">{step.title}</h3>
-                      <p className="text-sm text-text-mid">{step.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Card>
+                  );
+                })}
+              </div>
+            </Card>
+          </motion.div>
         </div>
       </Container>
     </Section>

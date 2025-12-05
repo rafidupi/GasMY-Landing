@@ -52,12 +52,7 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                 ))}
               </ul>
 
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={onBetaClick}
-                className="w-full mt-auto"
-              >
+              <Button variant="primary" size="lg" onClick={onBetaClick} className="w-full mt-auto">
                 Empieza gratis
               </Button>
             </Card>
@@ -90,12 +85,7 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                 ))}
               </ul>
 
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={onBetaClick}
-                className="w-full mt-auto"
-              >
+              <Button variant="primary" size="lg" onClick={onBetaClick} className="w-full mt-auto">
                 Contratar ahora
               </Button>
             </Card>
@@ -126,12 +116,7 @@ export function Pricing({ onBetaClick, onFlotaClick }: PricingProps) {
                 ))}
               </ul>
 
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={onFlotaClick}
-                className="w-full mt-auto"
-              >
+              <Button variant="primary" size="lg" onClick={onFlotaClick} className="w-full mt-auto">
                 Solicitar cotización
               </Button>
             </Card>

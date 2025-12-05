@@ -28,7 +28,7 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
   const results = calculateCosts(inputs);
 
   const handleInputChange = (field: keyof CalculatorInputs, value: string) => {
-    setInputs(prev => ({
+    setInputs((prev) => ({
       ...prev,
       [field]: parseFloat(value) || 0,
     }));
@@ -138,12 +138,7 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
               </div>
             </div>
 
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleCalculate}
-              className="w-full mb-6"
-            >
+            <Button variant="primary" size="lg" onClick={handleCalculate} className="w-full mb-6">
               Calcular
             </Button>
 
@@ -163,10 +158,8 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
 
                   {/* Con GasMy */}
                   <div className="bg-gradient-to-br from-grad-start to-grad-end rounded-ios p-5 text-white">
-    <p className="text-sm text-white/80 mb-1">Con gasmy.</p>
-                    <p className="text-3xl font-bold">
-                      {formatCLP(results.costoConGasMy)}
-                    </p>
+                    <p className="text-sm text-white/80 mb-1">Con gasmy.</p>
+                    <p className="text-3xl font-bold">{formatCLP(results.costoConGasMy)}</p>
                     <p className="text-xs text-white/70 mt-1">
                       Ahorro: {formatCLP(results.ahorroEstimado)}
                     </p>
@@ -191,16 +184,12 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
 
                 <div className="bg-yellow-50 border border-yellow-200 rounded-ios p-4">
                   <p className="text-sm text-yellow-800">
-                    <strong>Disclaimer:</strong> Cálculo referencial. gasmy. no promete un % fijo de ahorro; te ayuda a medir y optimizar tus gastos.
+                    <strong>Disclaimer:</strong> Cálculo referencial. gasmy. no promete un % fijo de
+                    ahorro; te ayuda a medir y optimizar tus gastos.
                   </p>
                 </div>
 
-                <Button
-                  variant="outline"
-                  size="md"
-                  onClick={handleEmailResults}
-                  className="w-full"
-                >
+                <Button variant="outline" size="md" onClick={handleEmailResults} className="w-full">
                   Recibir resultado por correo
                 </Button>
               </div>
