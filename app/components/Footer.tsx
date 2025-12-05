@@ -10,7 +10,10 @@ const poppins = Poppins({
 
 export function Footer() {
   return (
-    <footer id="contacto" className={`bg-[#1b1b1b] text-white py-12 rounded-t-[32px] ${poppins.className}`}>
+    <footer
+      id="contacto"
+      className={`bg-[#1b1b1b] text-white py-12 rounded-t-[32px] ${poppins.className}`}
+    >
       <Container>
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}

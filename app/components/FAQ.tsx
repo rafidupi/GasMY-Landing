@@ -5,6 +5,7 @@ import { Container } from './Container';
 import { Section } from './Section';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -13,7 +14,8 @@ const faqs = [
   },
   {
     question: '¿Cómo cuidan mi privacidad/ubicación?',
-    answer: 'Tus datos se usan solo para calcular y mostrar tus costos. No vendemos datos personales.',
+    answer:
+      'Tus datos se usan solo para calcular y mostrar tus costos. No vendemos datos personales.',
   },
   {
     question: '¿Cuánta batería consume?',
@@ -56,21 +58,27 @@ export function FAQ() {
                   onClick={() => toggleFAQ(index)}
                   className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-bg-main transition-colors"
                 >
-                  <span className="font-semibold text-text-strong pr-4">
-                    {faq.question}
-                  </span>
+                  <span className="font-semibold text-text-strong pr-4">{faq.question}</span>
                   <ChevronDown
                     className={cn(
-                      'w-5 h-5 text-text-mid flex-shrink-0 transition-transform',
+                      'w-5 h-5 text-text-mid flex-shrink-0 transition-transform duration-300',
                       openIndex === index && 'transform rotate-180'
                     )}
                   />
                 </button>
-                {openIndex === index && (
-                  <div className="px-6 pb-4 text-text-mid">
-                    {faq.answer}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-4 text-text-mid">{faq.answer}</div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>

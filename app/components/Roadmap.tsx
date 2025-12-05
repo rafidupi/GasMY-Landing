@@ -1,6 +1,7 @@
 import { Container } from './Container';
 import { Section } from './Section';
-import { CheckCircle2 } from 'lucide-react';
+import { Check } from 'lucide-react';
+import Image from 'next/image';
 
 const roadmapItems = [
   'Precios bencina automáticos (Waze API)',
@@ -15,7 +16,7 @@ export function Roadmap() {
       <Container>
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-strong">Roadmap</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-text-strong">Roadmap gasmy.</h2>
             <p className="text-lg text-text-mid">
               Estamos construyendo alertas de costo por pórtico y precios de bencina automáticos.
             </p>
@@ -27,7 +28,7 @@ export function Roadmap() {
                 key={index}
                 className="flex items-start gap-4 bg-bg-card border border-border-subtle rounded-ios p-4 hover:border-primary transition-colors"
               >
-                <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-lg text-text-strong">{item}</span>
               </div>
             ))}
