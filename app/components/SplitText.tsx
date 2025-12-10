@@ -70,7 +70,10 @@ const SplitText: React.FC<SplitTextProps> = ({
             delay: (delay / 1000) * i,
             ease: [0.25, 0.4, 0.25, 1],
           }}
-          className="inline-block mr-[0.25em]"
+          style={{ 
+            display: 'inline-block',
+            marginRight: '0.25em'
+          }}
         >
           {word}
         </motion.span>
