@@ -5,7 +5,6 @@ import { Card } from './Card';
 import { Section } from './Section';
 import { TollMap } from './TollMap';
 import { useRef, useState } from 'react';
-import CountUp from './CountUp';
 
 export function TagCoverage() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -45,7 +44,7 @@ export function TagCoverage() {
               Son más de los que imaginas
             </p>
             <div className="flex items-center gap-2">
-              <CountUp from={0} to={223} duration={2} className="text-2xl text-white font-bold" />
+              <span className="text-2xl text-white font-bold">223</span>
               <span className="text-2xl text-white font-bold">pórticos solo en la RM</span>
             </div>
             <p className="text-base text-white/70">
