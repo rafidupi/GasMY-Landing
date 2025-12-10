@@ -1,6 +1,6 @@
-# GasMy Landing Page
+# gasmy. Landing Page
 
-Landing page oficial de GasMy - Tu gasto en auto, ordenado y optimizado.
+Landing page oficial de gasmy. - Tu gasto en auto, ordenado y optimizado.
 
 > Última actualización: Diciembre 2025
 
