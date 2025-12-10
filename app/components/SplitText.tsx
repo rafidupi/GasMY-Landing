@@ -43,15 +43,17 @@ const SplitText: React.FC<SplitTextProps> = ({
             delay: (delay / 1000) * i,
             ease: [0.25, 0.4, 0.25, 1],
           }}
-          className="inline-block"
-          style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+          style={{ 
+            display: 'inline-block',
+            whiteSpace: char === ' ' ? 'pre' : 'normal'
+          }}
           onAnimationComplete={() => {
             if (i === text.length - 1) {
               onLetterAnimationComplete?.();
             }
           }}
         >
-          {char}
+          {char === ' ' ? '\u00A0' : char}
         </motion.span>
       ));
     }
@@ -81,9 +83,10 @@ const SplitText: React.FC<SplitTextProps> = ({
   const style: React.CSSProperties = {
     textAlign,
     wordWrap: 'break-word',
+    display: 'block',
   };
 
-  const classes = `inline-block whitespace-normal ${className}`;
+  const classes = `${className}`;
 
   const content = splitText();
 
