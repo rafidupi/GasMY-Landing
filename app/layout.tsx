@@ -9,13 +9,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'GasMy — Ahorra mientras conduces en Santiago',
+  title: 'gasmy. — Ahorra mientras conduces en Santiago',
   description:
-    'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes. Freemium con 7 días gratis.',
+    'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
   openGraph: {
-    title: 'GasMy — Ahorra mientras conduces en Santiago',
+    title: 'gasmy. — Ahorra mientras conduces en Santiago',
     description:
-      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes. Freemium con 7 días gratis.',
+      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     url: 'https://gasmy.org',
     siteName: 'gasmy.',
     locale: 'es_CL',
@@ -31,17 +31,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GasMy — Ahorra mientras conduces en Santiago',
+    title: 'gasmy. — Ahorra mientras conduces en Santiago',
     description:
-      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes. Freemium con 7 días gratis.',
+      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     images: ['/og-image.png'],
   },
   icons: {
-    icon: [
-      { url: '/Favicon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/Favicon.png', sizes: '16x16', type: 'image/png' },
-    ],
-    apple: '/Favicon.png',
+    icon: '/icon.png',
+    apple: '/icon.png',
   },
 };
 

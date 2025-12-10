@@ -26,9 +26,9 @@ export async function POST(request: Request) {
 
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
-      from: 'GasMy <onboarding@resend.dev>', // Dominio temporal mientras se verifica gasmy.org
+      from: 'gasmy. <onboarding@resend.dev>', // Dominio temporal mientras se verifica gasmy.org
       to: [email],
-      subject: '¡Bienvenido a la beta de GasMy! 🎉',
+      subject: '¡Bienvenido a la beta de gasmy.! 🎉',
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #007AFF;">${greeting}</h2>
@@ -49,13 +49,13 @@ export async function POST(request: Request) {
           </div>
           <hr style="border: none; border-top: 1px solid #E0E6ED; margin: 30px 0;">
           <p style="font-size: 14px; color: #9DA3AA;">
-            El equipo de GasMy<br>
+            El equipo de gasmy.<br>
             <a href="mailto:contact@gasmy.org" style="color: #007AFF; text-decoration: none;">contact@gasmy.org</a><br>
             <a href="https://gasmy.org" style="color: #007AFF; text-decoration: none;">gasmy.org</a>
           </p>
         </div>
       `,
-      text: `${greeting}\n\n¡Bacán! 🎉\n\nTe inscribiste oficialmente para probar la versión beta 🚀\n\nEn los próximos días te vamos a contactar para que puedas descargarla y darnos tu feedback.\n\nEstamos súper motivados con esta etapa, así que gracias por sumarte y ayudarnos a mejorar.\n\n¡Nos vemos pronto y prepárate para ser parte de los primeros en probarla! 👀🔥\n\n---\nEl equipo de GasMy\ncontact@gasmy.org\ngasmy.org`,
+      text: `${greeting}\n\n¡Bacán! 🎉\n\nTe inscribiste oficialmente para probar la versión beta 🚀\n\nEn los próximos días te vamos a contactar para que puedas descargarla y darnos tu feedback.\n\nEstamos súper motivados con esta etapa, así que gracias por sumarte y ayudarnos a mejorar.\n\n¡Nos vemos pronto y prepárate para ser parte de los primeros en probarla! 👀🔥\n\n---\nEl equipo de gasmy.\ncontact@gasmy.org\ngasmy.org`,
     });
 
     if (error) {
