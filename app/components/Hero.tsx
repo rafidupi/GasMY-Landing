@@ -18,20 +18,19 @@ export function Hero({ onCtaBeta }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[100svh] pb-10 pt-[calc(5.5rem+env(safe-area-inset-top))] md:pb-16 md:pt-[calc(7rem+env(safe-area-inset-top))]">
+    <section className="relative min-h-[100svh] pb-8 pt-[calc(5.5rem+env(safe-area-inset-top))] md:pb-12 md:pt-[calc(7rem+env(safe-area-inset-top))]">
       <Container>
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          <div className="space-y-5 text-white">
-            <div className="flex flex-wrap gap-3">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="space-y-8 text-white">
+            <div className="flex flex-wrap gap-2">
               <Badge variant="default">Beta en Santiago RM</Badge>
-              <Badge variant="success">Freemium</Badge>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-6">
               <SplitText
-                text="Lo que gastas al pisar el acelerador, sin sorpresas."
+                text="El costo real de moverte. Una app que te dice lo que nadie más te cuenta."
                 tag="h1"
-                className="w-full text-balance text-4xl font-bold leading-tight text-gray-900 md:text-5xl lg:text-6xl"
+                className="w-full text-balance text-3xl font-medium leading-relaxed tracking-normal text-gray-900 md:text-4xl lg:text-5xl"
                 textAlign="left"
                 splitType="chars"
                 delay={40}
@@ -41,22 +40,20 @@ export function Hero({ onCtaBeta }: HeroProps) {
                 threshold={0.2}
                 rootMargin="-80px"
               />
-              <p className="max-w-2xl text-lg text-gray-600 md:text-xl">
-                gasmy. registra tus TAG y bencina en tiempo real en Santiago para que veas cuanto
-                gastas por viaje y por mes.
+              <p className="max-w-xl text-base leading-relaxed text-gray-600 md:text-lg">
+                gasmy te muestra en vivo lo que gastas en bencina y TAG,
+                <br />
+                para que puedas tomar el control de tu billetera
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
               <Button variant="primary" size="lg" onClick={handleBetaClick}>
-                Unete a la beta
+                Únete a la lista de espera
               </Button>
             </div>
 
-            <p className="text-sm text-white/60">
-              Tu auto te cuesta mas de lo que crees. gasmy. lo hace visible para que puedas
-              optimizar.
-            </p>
+            <p className="text-sm text-gray-500">Para probar la app en la RM como beta</p>
           </div>
 
           <div className="flex justify-center">

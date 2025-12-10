@@ -1,5 +1,12 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'GasMy — Ahorra mientras conduces en Santiago',
@@ -45,7 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
-      <body className="bg-bg-main text-text-strong antialiased">{children}</body>
+      <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

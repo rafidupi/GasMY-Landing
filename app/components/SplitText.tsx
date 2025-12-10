@@ -107,8 +107,10 @@ const SplitText: React.FC<SplitTextProps> = ({
       let targets: Element[] = [];
       const assignTargets = (self: GSAPSplitText) => {
         if (splitType.includes('chars') && self.chars?.length) targets = self.chars;
-        if (!targets.length && splitType.includes('words') && self.words.length) targets = self.words;
-        if (!targets.length && splitType.includes('lines') && self.lines.length) targets = self.lines;
+        if (!targets.length && splitType.includes('words') && self.words.length)
+          targets = self.words;
+        if (!targets.length && splitType.includes('lines') && self.lines.length)
+          targets = self.lines;
         if (!targets.length) targets = self.chars || self.words || self.lines || [];
       };
 
@@ -152,7 +154,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       element._rbsplitInstance = splitInstance;
 
       return () => {
-        ScrollTrigger.getAll().forEach(st => {
+        ScrollTrigger.getAll().forEach((st) => {
           if (st.trigger === element) st.kill();
         });
         try {
@@ -187,7 +189,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       wordWrap: 'break-word',
       willChange: 'transform, opacity',
     };
-    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+    const classes = `split-parent inline-block whitespace-normal ${className}`;
 
     switch (tag) {
       case 'h1':
