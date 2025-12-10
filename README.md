@@ -2,6 +2,8 @@
 
 Landing page oficial de GasMy - Tu gasto en auto, ordenado y optimizado.
 
+> Última actualización: Diciembre 2025
+
 ## 🚀 Stack Técnico
 
 - **Framework**: Next.js 14 (App Router)
