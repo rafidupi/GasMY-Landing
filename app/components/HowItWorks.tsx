@@ -26,7 +26,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <Section id="como-funciona" className="bg-bg-main">
+    <Section id="como-funciona" className="bg-bg-main !pt-0 md:!pt-0">
       <Container className="max-w-6xl">
         <div className="grid min-h-[520px] place-items-center gap-10 text-center lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           <motion.div
@@ -36,7 +36,7 @@ export function HowItWorks() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <p className="inline-flex rounded-full border border-border-subtle px-4 py-1 text-sm uppercase tracking-wide text-text-mid">
+            <p className="inline-flex rounded-full border border-primary/30 bg-primary/5 px-4 py-1 text-sm uppercase tracking-wide text-primary">
               Paso a paso
             </p>
             <h2 className="text-3xl font-bold leading-tight text-text-strong md:text-4xl">

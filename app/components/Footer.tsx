@@ -32,11 +32,6 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#calculadora" className="hover:text-white transition-colors">
-                  Calculadora
-                </a>
-              </li>
-              <li>
                 <a href="#pricing" className="hover:text-white transition-colors">
                   Precios
                 </a>

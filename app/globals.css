@@ -76,3 +76,12 @@ body {
     #ffffff;
   background-repeat: no-repeat;
 }
+
+/* Hide scrollbar for ScrollStack */
+.scroll-stack-card::-webkit-scrollbar {
+  display: none;
+}
+
+div[class*='overflow-y-scroll']::-webkit-scrollbar {
+  display: none;
+}

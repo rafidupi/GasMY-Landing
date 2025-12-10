@@ -4,16 +4,17 @@ import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Get token from window object (set by script tag) or fallback to build-time env
-// This allows runtime configuration on Vercel
-const getMapboxToken = () => {
-  if (typeof window !== 'undefined' && (window as any).NEXT_PUBLIC_MAPBOX_TOKEN) {
-    return (window as any).NEXT_PUBLIC_MAPBOX_TOKEN;
-  }
-  return 'pk.eyJ1IjoicmFmaWR1cGkiLCJhIjoiY21oZHFuNWZkMDY4MTJtcHAwNTh6czl2biJ9.lGQ9b7REcyBvaiC_Uhjt1g';
-};
+// Use environment variable directly
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-const MAPBOX_TOKEN = getMapboxToken();
+// Log token status (without exposing full token)
+if (typeof window !== 'undefined') {
+  console.log('Mapbox token status:', {
+    isDefined: !!MAPBOX_TOKEN,
+    length: MAPBOX_TOKEN?.length,
+    prefix: MAPBOX_TOKEN?.substring(0, 10),
+  });
+}
 
 interface TollGantry {
   id: string;
@@ -122,12 +123,12 @@ export function TollMap() {
     if (map.current) return; // Initialize map only once
 
     console.log('Initializing Mapbox with token:', MAPBOX_TOKEN);
-    mapboxgl.accessToken = MAPBOX_TOKEN;
+    mapboxgl.accessToken = MAPBOX_TOKEN!;
 
     try {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/dark-v11',
+        style: 'mapbox://styles/mapbox/streets-v12',
         center: [-70.65, -33.45], // Santiago, Chile
         zoom: 10,
       });
@@ -143,6 +144,7 @@ export function TollMap() {
 
       map.current.on('error', (e) => {
         console.error('Map error:', e);
+        setError('Failed to load map tiles');
       });
     } catch (error) {
       console.error('Failed to create map:', error);
@@ -268,8 +270,8 @@ export function TollMap() {
 
       <div
         ref={mapContainer}
-        className="w-full h-full rounded-ios overflow-hidden relative z-0"
-        style={{ minHeight: '500px' }}
+        className="w-full h-full rounded-ios overflow-hidden"
+        style={{ minHeight: '500px', height: '500px' }}
       />
     </div>
   );
