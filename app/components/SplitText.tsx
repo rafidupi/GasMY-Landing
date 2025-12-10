@@ -1,22 +1,16 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText as GSAPSplitText } from 'gsap/SplitText';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export interface SplitTextProps {
   text: string;
   className?: string;
   delay?: number;
   duration?: number;
-  ease?: string | ((t: number) => number);
-  splitType?: 'chars' | 'words' | 'lines' | 'words, chars';
-  from?: gsap.TweenVars;
-  to?: gsap.TweenVars;
+  splitType?: 'chars' | 'words' | 'lines';
+  from?: { opacity?: number; y?: number; x?: number };
+  to?: { opacity?: number; y?: number; x?: number };
   threshold?: number;
   rootMargin?: string;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
@@ -24,220 +18,82 @@ export interface SplitTextProps {
   onLetterAnimationComplete?: () => void;
 }
 
-type ExtendedDocument = Document & {
-  fonts?: FontFaceSet;
-};
-
-type SplitHTMLElement = HTMLElement & {
-  _rbsplitInstance?: GSAPSplitText;
-};
-
 const SplitText: React.FC<SplitTextProps> = ({
   text,
   className = '',
   delay = 100,
   duration = 0.6,
-  ease = 'power3.out',
   splitType = 'chars',
   from = { opacity: 0, y: 40 },
   to = { opacity: 1, y: 0 },
-  threshold = 0.1,
-  rootMargin = '-100px',
   tag = 'p',
   textAlign = 'center',
   onLetterAnimationComplete,
 }) => {
-  const elementRef = useRef<SplitHTMLElement | null>(null);
-  const setRef = (node: HTMLElement | null) => {
-    elementRef.current = node as SplitHTMLElement | null;
-  };
-  const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (typeof document === 'undefined') {
-      setFontsLoaded(true);
-      return;
-    }
-
-    const doc = document as ExtendedDocument;
-    if (!doc.fonts) {
-      setFontsLoaded(true);
-      return;
-    }
-
-    if (doc.fonts.status === 'loaded') {
-      setFontsLoaded(true);
-    } else {
-      doc.fonts.ready
-        .then(() => {
-          setFontsLoaded(true);
-        })
-        .catch(() => {
-          setFontsLoaded(true);
-        });
-    }
-  }, []);
-
-  useGSAP(
-    () => {
-      const element = elementRef.current;
-      if (!element || !text || !fontsLoaded) return;
-
-      if (element._rbsplitInstance) {
-        try {
-          element._rbsplitInstance.revert();
-        } catch (_) {
-          // ignore
-        }
-        element._rbsplitInstance = undefined;
-      }
-
-      const startPct = (1 - threshold) * 100;
-      const marginMatch = /^(-?\d+(?:\.\d+)?)(px|em|rem|%)?$/.exec(rootMargin);
-      const marginValue = marginMatch ? parseFloat(marginMatch[1]) : 0;
-      const marginUnit = marginMatch ? marginMatch[2] || 'px' : 'px';
-      const sign =
-        marginValue === 0
-          ? ''
-          : marginValue < 0
-            ? `-=${Math.abs(marginValue)}${marginUnit}`
-            : `+=${marginValue}${marginUnit}`;
-      const start = `top ${startPct}%${sign}`;
-
-      let targets: Element[] = [];
-      const assignTargets = (self: GSAPSplitText) => {
-        if (splitType.includes('chars') && self.chars?.length) targets = self.chars;
-        if (!targets.length && splitType.includes('words') && self.words.length)
-          targets = self.words;
-        if (!targets.length && splitType.includes('lines') && self.lines.length)
-          targets = self.lines;
-        if (!targets.length) targets = self.chars || self.words || self.lines || [];
-      };
-
-      const splitInstance = new GSAPSplitText(element, {
-        type: splitType,
-        smartWrap: true,
-        autoSplit: splitType === 'lines',
-        linesClass: 'split-line',
-        wordsClass: 'split-word',
-        charsClass: 'split-char',
-        reduceWhiteSpace: false,
-        onSplit: (self: GSAPSplitText) => {
-          assignTargets(self);
-          if (!targets.length) return undefined;
-
-          return gsap.fromTo(
-            targets,
-            { ...from },
-            {
-              ...to,
-              duration,
-              ease,
-              stagger: delay / 1000,
-              scrollTrigger: {
-                trigger: element,
-                start,
-                once: true,
-                fastScrollEnd: true,
-                anticipatePin: 0.4,
-              },
-              onComplete: () => {
-                onLetterAnimationComplete?.();
-              },
-              willChange: 'transform, opacity',
-              force3D: true,
+  const splitText = () => {
+    if (splitType === 'chars') {
+      return text.split('').map((char, i) => (
+        <motion.span
+          key={`${char}-${i}`}
+          initial={from}
+          whileInView={to}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{
+            duration,
+            delay: (delay / 1000) * i,
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
+          className="inline-block"
+          style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+          onAnimationComplete={() => {
+            if (i === text.length - 1) {
+              onLetterAnimationComplete?.();
             }
-          );
-        },
-      });
-
-      element._rbsplitInstance = splitInstance;
-
-      return () => {
-        ScrollTrigger.getAll().forEach((st) => {
-          if (st.trigger === element) st.kill();
-        });
-        try {
-          splitInstance.revert();
-        } catch (_) {
-          // ignore
-        }
-        element._rbsplitInstance = undefined;
-      };
-    },
-    {
-      dependencies: [
-        text,
-        delay,
-        duration,
-        ease,
-        splitType,
-        JSON.stringify(from),
-        JSON.stringify(to),
-        threshold,
-        rootMargin,
-        fontsLoaded,
-        onLetterAnimationComplete,
-      ],
-      scope: elementRef,
+          }}
+        >
+          {char}
+        </motion.span>
+      ));
     }
-  );
 
-  const renderTag = () => {
-    const style: React.CSSProperties = {
-      textAlign,
-      wordWrap: 'break-word',
-      willChange: 'transform, opacity',
-    };
-    const classes = `split-parent inline-block whitespace-normal ${className}`;
-
-    switch (tag) {
-      case 'h1':
-        return (
-          <h1 ref={setRef} style={style} className={classes}>
-            {text}
-          </h1>
-        );
-      case 'h2':
-        return (
-          <h2 ref={setRef} style={style} className={classes}>
-            {text}
-          </h2>
-        );
-      case 'h3':
-        return (
-          <h3 ref={setRef} style={style} className={classes}>
-            {text}
-          </h3>
-        );
-      case 'h4':
-        return (
-          <h4 ref={setRef} style={style} className={classes}>
-            {text}
-          </h4>
-        );
-      case 'h5':
-        return (
-          <h5 ref={setRef} style={style} className={classes}>
-            {text}
-          </h5>
-        );
-      case 'h6':
-        return (
-          <h6 ref={setRef} style={style} className={classes}>
-            {text}
-          </h6>
-        );
-      default:
-        return (
-          <p ref={setRef} style={style} className={classes}>
-            {text}
-          </p>
-        );
+    if (splitType === 'words') {
+      return text.split(' ').map((word, i) => (
+        <motion.span
+          key={`${word}-${i}`}
+          initial={from}
+          whileInView={to}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{
+            duration,
+            delay: (delay / 1000) * i,
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ));
     }
+
+    return text;
   };
 
-  return renderTag();
+  const style: React.CSSProperties = {
+    textAlign,
+    wordWrap: 'break-word',
+  };
+
+  const classes = `inline-block whitespace-normal ${className}`;
+
+  const content = splitText();
+
+  const Tag = tag as keyof JSX.IntrinsicElements;
+
+  return (
+    <Tag style={style} className={classes}>
+      {content}
+    </Tag>
+  );
 };
 
 export default SplitText;
