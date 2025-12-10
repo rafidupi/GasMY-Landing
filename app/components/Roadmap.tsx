@@ -3,30 +3,36 @@
 import { Container } from './Container';
 import { Section } from './Section';
 import { motion } from 'framer-motion';
-import { Sparkles, Shield, Zap, Store } from 'lucide-react';
+import {
+  RoadmapIconCircle,
+  SparkIcon,
+  ShieldIcon,
+  LightningIcon,
+  StorefrontIcon,
+} from './RoadmapIcons';
 
 const roadmapItems = [
   {
     id: 1,
-    icon: Sparkles,
+    icon: SparkIcon,
     title: 'Implementaremos IA para ser más precisos con tus gastos por km',
     description: 'Inteligencia artificial que aprenda de tus patrones de conducción',
   },
   {
     id: 2,
-    icon: Shield,
+    icon: ShieldIcon,
     title: 'Desarrollaremos alertas de mantención para que evites gastos inesperados',
     description: 'Notificaciones inteligentes basadas en el uso real de tu vehículo',
   },
   {
     id: 3,
-    icon: Zap,
+    icon: LightningIcon,
     title: 'Integraremos también autos híbridos y eléctricos',
     description: 'Tracking especializado para los vehículos del futuro',
   },
   {
     id: 4,
-    icon: Store,
+    icon: StorefrontIcon,
     title: 'Marketplace gasmy: Queremos ofrecerte los mejores servicios para tu vehículo',
     description: 'Conecta con los mejores proveedores de servicios automotrices',
   },
@@ -69,9 +75,9 @@ export function Roadmap() {
                   >
                     {/* Timeline dot with custom icon */}
                     <div className="relative flex-shrink-0">
-                      <div className="w-14 h-14 rounded-full bg-white border-2 border-primary shadow-[0_0_20px_rgba(0,122,255,0.3)] flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-primary" />
-                      </div>
+                      <RoadmapIconCircle>
+                        <Icon />
+                      </RoadmapIconCircle>
                     </div>
 
                     {/* Card */}
