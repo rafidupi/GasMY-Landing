@@ -8,7 +8,6 @@ import { TagCoverage } from './components/TagCoverage';
 import { Features } from './components/Features';
 import { Pricing } from './components/Pricing';
 import { Testimonials } from './components/Testimonials';
-import { ScrollCar } from './components/ScrollCar';
 import { Roadmap } from './components/Roadmap';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
@@ -39,7 +38,6 @@ export default function Home() {
       <HowItWorks />
       <TagCoverage />
       <Features />
-      <ScrollCar />
       <Pricing
         onBetaClick={() => setBetaFormOpen(true)}
         onFlotaClick={() => setFlotaFormOpen(true)}
