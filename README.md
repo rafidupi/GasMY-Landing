@@ -129,17 +129,17 @@ npm run start
 ## 🎨 Paleta de Colores
 
 ```css
---color-primary: #007AFF;     /* iOS Blue */
---color-success: #34C759;     /* Verde */
---bg-main: #FFFFFF;           /* Fondo principal */
---bg-card: #FFFFFF;           /* Fondo tarjetas */
---text-strong: #2C2E30;       /* Texto principal */
---text-mid: #6E757C;          /* Texto secundario */
---text-light: #9DA3AA;        /* Texto sutil */
---border-main: #A0AAB2;       /* Bordes */
---border-subtle: #E0E6ED;     /* Bordes sutiles */
---grad-start: #4F8EF7;        /* Gradiente inicio */
---grad-end: #64C6FF;          /* Gradiente fin */
+--color-primary: #007aff; /* iOS Blue */
+--color-success: #34c759; /* Verde */
+--bg-main: #ffffff; /* Fondo principal */
+--bg-card: #ffffff; /* Fondo tarjetas */
+--text-strong: #2c2e30; /* Texto principal */
+--text-mid: #6e757c; /* Texto secundario */
+--text-light: #9da3aa; /* Texto sutil */
+--border-main: #a0aab2; /* Bordes */
+--border-subtle: #e0e6ed; /* Bordes sutiles */
+--grad-start: #4f8ef7; /* Gradiente inicio */
+--grad-end: #64c6ff; /* Gradiente fin */
 ```
 
 ## 🔌 API Endpoint
@@ -179,6 +179,7 @@ El sitio incluye integración con:
 - **Meta Pixel**: Tracking para Facebook Ads
 
 Eventos disponibles:
+
 - `view_hero`
 - `click_cta_beta`
 - `click_cta_calc`

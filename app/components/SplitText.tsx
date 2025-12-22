@@ -43,9 +43,9 @@ const SplitText: React.FC<SplitTextProps> = ({
             delay: (delay / 1000) * i,
             ease: [0.25, 0.4, 0.25, 1],
           }}
-          style={{ 
+          style={{
             display: 'inline-block',
-            whiteSpace: char === ' ' ? 'pre' : 'normal'
+            whiteSpace: char === ' ' ? 'pre' : 'normal',
           }}
           onAnimationComplete={() => {
             if (i === text.length - 1) {
@@ -70,9 +70,9 @@ const SplitText: React.FC<SplitTextProps> = ({
             delay: (delay / 1000) * i,
             ease: [0.25, 0.4, 0.25, 1],
           }}
-          style={{ 
+          style={{
             display: 'inline-block',
-            marginRight: '0.25em'
+            marginRight: '0.25em',
           }}
         >
           {word}

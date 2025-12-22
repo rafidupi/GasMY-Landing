@@ -10,12 +10,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'gasmy. — Ahorra mientras conduces en Santiago',
-  description:
-    'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
+  description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
   openGraph: {
     title: 'gasmy. — Ahorra mientras conduces en Santiago',
-    description:
-      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
+    description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     url: 'https://gasmy.org',
     siteName: 'gasmy.',
     locale: 'es_CL',
@@ -32,8 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'gasmy. — Ahorra mientras conduces en Santiago',
-    description:
-      'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
+    description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     images: ['/og-image.png'],
   },
   icons: {
