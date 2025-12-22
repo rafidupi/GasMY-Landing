@@ -32,8 +32,8 @@ export function Hero({ onCtaBeta }: HeroProps) {
                 tag="h1"
                 className="w-full text-balance text-3xl font-medium leading-relaxed tracking-normal text-gray-900 md:text-4xl lg:text-5xl"
                 textAlign="left"
-                splitType="chars"
-                delay={25}
+                splitType="words"
+                delay={50}
                 duration={0.4}
                 from={{ opacity: 0, y: 15 }}
                 to={{ opacity: 1, y: 0 }}
