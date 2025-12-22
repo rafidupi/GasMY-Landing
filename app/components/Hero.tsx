@@ -32,13 +32,11 @@ export function Hero({ onCtaBeta }: HeroProps) {
                 tag="h1"
                 className="w-full text-balance text-3xl font-medium leading-relaxed tracking-normal text-gray-900 md:text-4xl lg:text-5xl"
                 textAlign="left"
-                splitType="words"
-                delay={50}
-                duration={0.5}
-                from={{ opacity: 0, y: 20 }}
+                splitType="chars"
+                delay={25}
+                duration={0.4}
+                from={{ opacity: 0, y: 15 }}
                 to={{ opacity: 1, y: 0 }}
-                threshold={0.2}
-                rootMargin="-80px"
               />
               <p className="max-w-xl text-base leading-relaxed text-gray-600 md:text-lg">
                 gasmy te muestra en vivo lo que gastas en bencina y TAG,
