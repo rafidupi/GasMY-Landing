@@ -18,7 +18,6 @@ const tipoUsuarioOptions = [
   { value: 'particular', label: 'Particular' },
   { value: 'app', label: 'Conductor de app' },
   { value: 'pyme', label: 'Pyme' },
-  { value: 'papa-mama-taxi', label: 'Papá/Mamá taxi' },
   { value: 'estudiante', label: 'Estudiante' },
   { value: 'transporte-escolar', label: 'Transporte escolar' },
   { value: 'transporte-privado', label: 'Transporte de pasajeros (privado)' },
