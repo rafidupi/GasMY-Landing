@@ -1,3 +1,4 @@
+import AnalyticsInit from './AnalyticsInit';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -47,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="es-CL">
       <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
+        <AnalyticsInit />
         {children}
       </body>
     </html>
