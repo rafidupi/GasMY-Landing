@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 import AnalyticsInit from './AnalyticsInit';
 import type { Metadata } from 'next';
@@ -71,6 +71,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
         <AnalyticsInit />
         {children}
+        <Analytics />
       </body>
     </html>
   );
