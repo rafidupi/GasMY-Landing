@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import AnalyticsInit from './AnalyticsInit';
 import type { Metadata } from 'next';
