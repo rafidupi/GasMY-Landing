@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'whatsapp';
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -23,6 +23,8 @@ export function Button({
     secondary: 'bg-success text-white hover:opacity-90 shadow-md hover:shadow-lg',
     outline:
       'border-2 border-border-main text-text-strong hover:border-primary hover:text-primary bg-bg-card',
+    whatsapp:
+      'bg-gradient-to-br from-[#25D366] to-[#1EBE57] text-white hover:from-[#1EBE57] hover:to-[#1AA952] shadow-[0_6px_20px_rgba(37,211,102,0.5)] hover:shadow-[0_8px_28px_rgba(37,211,102,0.65)] hover:translate-y-[-2px] active:translate-y-[0px]',
   };
 
   const sizes = {
