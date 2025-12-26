@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import AnalyticsInit from './AnalyticsInit';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -47,6 +48,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
+      {/* 🔽 GA4 – Google Analytics */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script
+        id="ga4-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+          `,
+        }}
+      />
+      {/* 🔼 GA4 – fin */}
       <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
         <AnalyticsInit />
         {children}
