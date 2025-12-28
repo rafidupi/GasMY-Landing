@@ -74,7 +74,7 @@ export function Hero({ onCtaBeta }: HeroProps) {
             </p>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center lg:hidden">
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -83,10 +83,10 @@ export function Hero({ onCtaBeta }: HeroProps) {
                 delay: 0.3,
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
-              className="relative w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-[300px]"
+              className="relative w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px]"
             >
               <img
-                src="/mockup7.png"
+                src="/mockuphero.png"
                 alt="gasmy. App en iPhone mostrando TAG BIP y gastos"
                 className="h-auto w-full object-contain drop-shadow-[0_20px_60px_rgba(28,10,232,0.15)]"
               />

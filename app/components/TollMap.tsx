@@ -5,7 +5,9 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Use environment variable with fallback
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || 'pk.eyJ1IjoicmFmaWR1cGkiLCJhIjoiY21oZHFuNWZkMDY4MTJtcHAwNTh6czl2biJ9.lGQ9b7REcyBvaiC_Uhjt1g';
+const MAPBOX_TOKEN =
+  process.env.NEXT_PUBLIC_MAPBOX_TOKEN ||
+  'pk.eyJ1IjoicmFmaWR1cGkiLCJhIjoiY21oZHFuNWZkMDY4MTJtcHAwNTh6czl2biJ9.lGQ9b7REcyBvaiC_Uhjt1g';
 
 interface TollGantry {
   id: string;

@@ -1,5 +1,5 @@
-import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics, isSupported } from "firebase/analytics";
+import { initializeApp, getApps } from 'firebase/app';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,23 +12,22 @@ const firebaseConfig = {
 };
 
 // Check if Firebase is properly configured
-const isFirebaseConfigured = firebaseConfig.apiKey && 
-  firebaseConfig.authDomain && 
-  firebaseConfig.projectId && 
+const isFirebaseConfigured =
+  firebaseConfig.apiKey &&
+  firebaseConfig.authDomain &&
+  firebaseConfig.projectId &&
   firebaseConfig.appId;
 
-export const app = isFirebaseConfigured && !getApps().length 
-  ? initializeApp(firebaseConfig) 
-  : getApps()[0] || null;
+export const app =
+  isFirebaseConfigured && !getApps().length ? initializeApp(firebaseConfig) : getApps()[0] || null;
 
 export async function initAnalytics() {
   if (!isFirebaseConfigured) {
     console.log('Firebase not configured - skipping analytics initialization');
     return null;
   }
-  if (typeof window === "undefined") return null;
+  if (typeof window === 'undefined') return null;
   if (!(await isSupported())) return null;
   if (!app) return null;
   return getAnalytics(app);
 }
-

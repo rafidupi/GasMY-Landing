@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import GasMyNavbar from './components/Navbar';
 import { Hero } from './components/Hero';
+import { ScrollingPhone } from './components/ScrollingPhone';
+import { BetaDownload } from './components/BetaDownload';
 import { HowItWorks } from './components/HowItWorks';
 import { TagCoverage } from './components/TagCoverage';
 import { Features } from './components/Features';
@@ -29,6 +31,7 @@ export default function Home() {
   return (
     <main className="bg-bg-main text-text-strong">
       <GasMyNavbar />
+      <ScrollingPhone />
 
       <section className="relative isolate min-h-screen overflow-hidden aurora-bg">
         <div className="relative z-30">
@@ -36,6 +39,7 @@ export default function Home() {
         </div>
       </section>
 
+      <BetaDownload />
       <HowItWorks />
       <TagCoverage />
       <Features />
@@ -54,3 +58,5 @@ export default function Home() {
     </main>
   );
 }
+
+
