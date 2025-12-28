@@ -44,7 +44,7 @@ export default function GasMyNavbar({
   const positioningStyle = sticky
     ? {
         top: 'calc(env(safe-area-inset-top) + 1rem)',
-        zIndex: 99999,
+        zIndex: 50,
       }
     : undefined;
 

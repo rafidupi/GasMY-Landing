@@ -11,7 +11,7 @@ export function Card({ children, className, gradient = false }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-ios-lg p-6 shadow-sm',
+        'rounded-ios-lg p-6 shadow-sm overflow-hidden',
         gradient
           ? 'bg-gradient-to-br from-grad-start to-grad-end text-white'
           : 'bg-bg-card border border-border-subtle',

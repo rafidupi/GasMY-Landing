@@ -14,6 +14,7 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { BetaForm } from './components/BetaForm';
 import { FlotaForm } from './components/FlotaForm';
+import { BetaDownload } from './components/BetaDownload';
 import { initGA, initMetaPixel, trackEvent } from '@/lib/analytics';
 
 export default function Home() {
@@ -30,12 +31,13 @@ export default function Home() {
     <main className="bg-bg-main text-text-strong">
       <GasMyNavbar />
 
-      <section className="relative isolate min-h-screen overflow-hidden aurora-bg">
+      <section className="relative isolate min-h-screen aurora-bg pb-3">
         <div className="relative z-30">
           <Hero onCtaBeta={() => setBetaFormOpen(true)} />
         </div>
       </section>
 
+      <BetaDownload />
       <HowItWorks />
       <TagCoverage />
       <Features />

@@ -6,6 +6,7 @@ import { Button } from './Button';
 import { Badge } from './Badge';
 import SplitText from './SplitText';
 import { trackEvent } from '@/lib/analytics';
+import { Wallet, MapPin } from 'lucide-react';
 
 interface HeroProps {
   onCtaBeta: () => void;
@@ -22,10 +23,6 @@ export function Hero({ onCtaBeta }: HeroProps) {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-8 text-white">
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="default">Beta en Santiago RM</Badge>
-            </div>
-
             <div className="space-y-6">
               <SplitText
                 text="El costo real de moverte. Una app que te dice lo que nadie más te cuenta."
@@ -45,7 +42,7 @@ export function Hero({ onCtaBeta }: HeroProps) {
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Button variant="primary" size="lg" onClick={handleBetaClick}>
                 Únete a la beta
               </Button>
@@ -69,8 +66,8 @@ export function Hero({ onCtaBeta }: HeroProps) {
             </div>
 
             <p className="text-base text-gray-500">
-              Inscríbete en el formulario para acceder a la beta, que lanzaremos a través de nuestra
-              comunidad de WhatsApp. ¡Y sé el primero en probarla!
+              Inscríbete en el formulario para acceder a la beta y súmate a nuestra comunidad en
+              WhatsApp, para que todos podamos construir una app que nos beneficie a todos.
             </p>
           </div>
 
@@ -85,11 +82,51 @@ export function Hero({ onCtaBeta }: HeroProps) {
               }}
               className="relative w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-[300px]"
             >
+              {/* Phone mockup image */}
               <img
-                src="/mockup7.png"
+                src="/mockuphero.png"
                 alt="gasmy. App en iPhone mostrando TAG BIP y gastos"
                 className="h-auto w-full object-contain drop-shadow-[0_20px_60px_rgba(28,10,232,0.15)]"
               />
+
+              {/* Floating glass cards - hidden on mobile */}
+              <div className="pointer-events-none absolute inset-0 hidden md:block">
+                {/* Top-right floating card */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{
+                    opacity: [0.85, 0.95, 0.85],
+                    y: [0, -12, 0],
+                    scale: 1,
+                  }}
+                  transition={{
+                    opacity: { duration: 3.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+                    y: { duration: 3.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+                    scale: { duration: 0.6, delay: 0.5 },
+                  }}
+                  className="absolute -right-4 top-16 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl"
+                >
+                  <Wallet className="h-7 w-7 text-blue-500" strokeWidth={2} />
+                </motion.div>
+
+                {/* Left-middle floating card */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{
+                    opacity: [0.9, 0.85, 0.9],
+                    y: [0, -12, 0],
+                    scale: 1,
+                  }}
+                  transition={{
+                    opacity: { duration: 3.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+                    y: { duration: 3.5, repeat: Infinity, ease: [0.4, 0, 0.6, 1] },
+                    scale: { duration: 0.6, delay: 0.7 },
+                  }}
+                  className="absolute -left-2 top-1/2 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl"
+                >
+                  <MapPin className="h-7 w-7 text-blue-500" strokeWidth={2} />
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
