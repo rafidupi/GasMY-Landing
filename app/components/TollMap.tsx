@@ -148,85 +148,76 @@ export function TollMap() {
     };
   }, []);
 
-  // Add markers when gantries are loaded
+  // Add GeoJSON layer for toll points from KML file
   useEffect(() => {
-    if (!map.current || !gantries || gantries.length === 0) return;
+    if (!map.current) return;
 
-    const addMarkers = () => {
-      if (!gantries || !map.current) return;
+    const addGeoJsonLayer = () => {
+      if (!map.current) return;
 
-      console.log('Adding markers for', gantries.length, 'gantries');
-      console.log('Map loaded?', map.current.loaded());
+      // Add the GeoJSON source
+      map.current.addSource('additional-tolls', {
+        type: 'geojson',
+        data: '/tolls.geojson',
+      });
 
-      gantries.forEach((gantry, index) => {
-        if (!gantry) {
-          console.warn(`Gantry ${index} is null/undefined`);
-          return;
+      // Add a circle layer for point features
+      map.current.addLayer({
+        id: 'toll-points-layer',
+        type: 'circle',
+        source: 'additional-tolls',
+        filter: ['==', '$type', 'Point'],
+        paint: {
+          'circle-radius': 4,
+          'circle-color': '#2548df',
+          'circle-stroke-width': 0.5,
+          'circle-stroke-color': '#ffffff',
+          'circle-opacity': 0.8,
+        },
+      });
+
+      // Add click event to show popup
+      map.current.on('click', 'toll-points-layer', (e) => {
+        if (!e.features || e.features.length === 0) return;
+
+        const coordinates = (e.features[0].geometry as any).coordinates.slice();
+        const properties = e.features[0].properties;
+
+        // Ensure popup appears over the correct point
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
-        console.log(`Gantry ${index} keys:`, Object.keys(gantry));
-        console.log(`Gantry ${index} coordinate:`, gantry.coordinate);
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(
+            `
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 8px;">
+              <h3 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #2C2E30;">
+                ${properties?.name || 'Peaje'}
+              </h3>
+            </div>
+          `
+          )
+          .addTo(map.current!);
+      });
 
-        if (
-          !gantry.coordinate ||
-          !Array.isArray(gantry.coordinate) ||
-          gantry.coordinate.length !== 2
-        ) {
-          console.warn(
-            `Gantry ${index} (${gantry.id}) has invalid coordinates:`,
-            gantry.coordinate
-          );
-          return;
-        }
+      // Change cursor on hover
+      map.current.on('mouseenter', 'toll-points-layer', () => {
+        if (map.current) map.current.getCanvas().style.cursor = 'pointer';
+      });
 
-        const [lat, lng] = gantry.coordinate;
-        console.log(`Adding marker ${index}: ${gantry.name_display} at [lat:${lat}, lng:${lng}]`);
-
-        // Mapbox uses [lng, lat] order, but our API returns [lat, lng]
-        // Create a custom marker element
-        const el = document.createElement('div');
-        el.className = 'toll-marker';
-        el.style.width = '8px';
-        el.style.height = '8px';
-        el.style.borderRadius = '50%';
-        el.style.backgroundColor = '#3b82f6';
-        el.style.border = '1px solid #FFFFFF';
-        el.style.cursor = 'pointer';
-        el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.3)';
-
-        // Create popup
-        const popup = new mapboxgl.Popup({
-          offset: 25,
-          closeButton: false,
-          closeOnClick: true,
-        }).setHTML(`
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 8px;">
-            <h3 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #2C2E30;">
-              ${gantry.name_display || gantry.name || 'TAG'}
-            </h3>
-            <p style="margin: 0; font-size: 12px; color: #6E757C;">
-              ${gantry.highway || ''}
-            </p>
-            <p style="margin: 4px 0 0 0; font-size: 11px; color: #9DA3AA;">
-              ${gantry.lengthKm ? gantry.lengthKm.toFixed(2) + ' km' : ''}
-            </p>
-          </div>
-        `);
-
-        // Add marker to map - Mapbox expects [lng, lat] but API returns [lat, lng]
-        // So we need to swap: [lat, lng] -> [lng, lat]
-        new mapboxgl.Marker(el).setLngLat([lng, lat]).setPopup(popup).addTo(map.current!);
+      map.current.on('mouseleave', 'toll-points-layer', () => {
+        if (map.current) map.current.getCanvas().style.cursor = '';
       });
     };
 
-    // Check if map is already loaded
     if (map.current.loaded()) {
-      addMarkers();
+      addGeoJsonLayer();
     } else {
-      // Wait for map to load
-      map.current.once('load', addMarkers);
+      map.current.once('load', addGeoJsonLayer);
     }
-  }, [gantries]);
+  }, []);
 
   if (!MAPBOX_TOKEN) {
     return (
