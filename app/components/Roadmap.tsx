@@ -45,7 +45,23 @@ export function Roadmap() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-strong">Roadmap gasmy.</h2>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-text-strong"
+              initial={{ backgroundPosition: '0% 50%' }}
+              whileInView={{ backgroundPosition: '100% 50%' }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: 'linear' }}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #0066ff, #0052cc, #0066ff)',
+                backgroundSize: '200% 100%',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                paddingBottom: '0.25rem',
+              }}
+            >
+              Roadmap gasmy.
+            </motion.h2>
             <p className="text-lg text-text-mid">
               Estamos construyendo alertas de costo por pórtico y precios de bencina automáticos.
             </p>
@@ -54,7 +70,10 @@ export function Roadmap() {
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line - centered behind icons */}
-            <div className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary to-transparent" style={{ left: '27px' }} />
+            <div
+              className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary to-transparent"
+              style={{ left: '27px' }}
+            />
 
             {/* Timeline items */}
             <div className="space-y-12">
@@ -81,7 +100,7 @@ export function Roadmap() {
                     </div>
 
                     {/* Card */}
-                    <div className="flex-1 bg-white rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(79,142,247,0.15)] transition-shadow duration-300">
+                    <div className="flex-1 bg-white rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(79,142,247,0.15)] transition-shadow duration-300 overflow-hidden">
                       <h3 className="text-lg font-bold text-text-strong mb-2 leading-snug">
                         {item.title}
                       </h3>

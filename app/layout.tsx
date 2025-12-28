@@ -71,7 +71,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
         <AnalyticsInit />
         {children}
-        <Analytics />
+        <Analytics />i
       </body>
     </html>
   );
