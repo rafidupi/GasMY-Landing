@@ -214,7 +214,7 @@ export function BetaDownload() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <a href="/app-release.apk" download="gasmy.apk">
+                <a href="https://drive.google.com/file/d/1KJY98csMRdBAfRU7zYrV3qMgifauD6x-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                   <Button variant="dark" size="lg" className="mt-8 w-full">
                     Descargar para Android
                   </Button>
