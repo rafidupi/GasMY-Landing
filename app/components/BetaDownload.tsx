@@ -187,7 +187,7 @@ export function BetaDownload() {
               </div>
 
               <div className="flex-grow space-y-4 text-left">
-                {[ 
+                {[
                   'Haz clic en el botón "Descargar para Android"',
                   'Permite la instalación de fuentes desconocidas cuando se solicite',
                   'Instala el archivo APK descargado',
@@ -214,7 +214,11 @@ export function BetaDownload() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <a href="https://drive.google.com/file/d/1KJY98csMRdBAfRU7zYrV3qMgifauD6x-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://drive.google.com/file/d/1KJY98csMRdBAfRU7zYrV3qMgifauD6x-/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button variant="dark" size="lg" className="mt-8 w-full">
                     Descargar para Android
                   </Button>
@@ -315,7 +319,11 @@ export function BetaDownload() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <a href="https://testflight.apple.com/join/ptExUGaU" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://testflight.apple.com/join/ptExUGaU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button variant="dark" size="lg" className="mt-8 w-full">
                     Descargar para IOS
                   </Button>
@@ -353,5 +361,3 @@ export function BetaDownload() {
     </Section>
   );
 }
-
-
