@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import GasMyNavbar from './components/Navbar';
@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="bg-bg-main text-text-strong">
-      <GasMyNavbar />
+      <GasMyNavbar ctaText="Iniciar sesion" ctaHref="/login" />
 
       <section className="relative isolate min-h-screen aurora-bg pb-3">
         <div className="relative z-30">
@@ -56,3 +56,4 @@ export default function Home() {
     </main>
   );
 }
+

@@ -1,8 +1,9 @@
-import { Analytics } from '@vercel/analytics/react';
+﻿import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 import AnalyticsInit from './AnalyticsInit';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { AuthProvider } from '@/context/AuthContext';
 import './globals.css';
 
 const inter = Inter({
@@ -12,10 +13,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'gasmy. — Ahorra mientras conduces en Santiago',
+  title: 'gasmy. â€” Ahorra mientras conduces en Santiago',
   description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
   openGraph: {
-    title: 'gasmy. — Ahorra mientras conduces en Santiago',
+    title: 'gasmy. â€” Ahorra mientras conduces en Santiago',
     description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     url: 'https://gasmy.org',
     siteName: 'gasmy.',
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'gasmy. — Ahorra mientras conduces en Santiago',
+    title: 'gasmy. â€” Ahorra mientras conduces en Santiago',
     description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     images: ['/og-image.png'],
   },
@@ -49,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
-      {/* 🔽 GA4 – Google Analytics */}
+      {/* ðŸ”½ GA4 â€“ Google Analytics */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         strategy="afterInteractive"
@@ -67,11 +68,11 @@ export default function RootLayout({
           `,
         }}
       />
-      {/* 🔼 GA4 – fin */}
+      {/* ðŸ”¼ GA4 â€“ fin */}
       <body className={`${inter.className} bg-bg-main text-text-strong antialiased`}>
         <AnalyticsInit />
-        {children}
-        <Analytics />i
+        <AuthProvider>{children}</AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
