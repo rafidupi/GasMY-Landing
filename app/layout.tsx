@@ -13,10 +13,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'gasmy. â€” Ahorra mientras conduces en Santiago',
+  title: 'gasmy. - Ahorra mientras conduces en Santiago',
   description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
   openGraph: {
-    title: 'gasmy. â€” Ahorra mientras conduces en Santiago',
+    title: 'gasmy. - Ahorra mientras conduces en Santiago',
     description: 'Registra tus TAG y bencina en tiempo real. Ve tu costo por viaje y por mes.',
     url: 'https://gasmy.org',
     siteName: 'gasmy.',
