@@ -84,7 +84,7 @@ export function Hero({ onCtaBeta }: HeroProps) {
             >
               {/* Phone mockup image */}
               <img
-                src="/mockuphero.png"
+                src="/Mockupfinal.png"
                 alt="gasmy. App en iPhone mostrando TAG BIP y gastos"
                 className="h-auto w-full object-contain drop-shadow-[0_20px_60px_rgba(28,10,232,0.15)]"
               />

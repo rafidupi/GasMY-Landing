@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { Poppins } from 'next/font/google';
@@ -24,8 +24,8 @@ interface NavbarProps {
 }
 
 export default function GasMyNavbar({
-  ctaText = 'Inicia sesion',
-  ctaHref = '#',
+  ctaText = 'Iniciar sesion',
+  ctaHref = '/login',
   sticky = true,
 }: NavbarProps) {
   const [open, setOpen] = React.useState(false);
@@ -155,3 +155,4 @@ export default function GasMyNavbar({
     </header>
   );
 }
+
