@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion';
 import { Info } from 'lucide-react';
@@ -187,7 +187,7 @@ export function BetaDownload() {
               </div>
 
               <div className="flex-grow space-y-4 text-left">
-                {[
+                {[ 
                   'Haz clic en el botón "Descargar para Android"',
                   'Permite la instalación de fuentes desconocidas cuando se solicite',
                   'Instala el archivo APK descargado',
@@ -315,9 +315,11 @@ export function BetaDownload() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <Button variant="dark" size="lg" className="mt-8 w-full">
-                  Descargar para IOS
-                </Button>
+                <a href="https://testflight.apple.com/join/ptExUGaU" target="_blank" rel="noopener noreferrer">
+                  <Button variant="dark" size="lg" className="mt-8 w-full">
+                    Descargar para IOS
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
           </div>
@@ -351,3 +353,5 @@ export function BetaDownload() {
     </Section>
   );
 }
+
+
