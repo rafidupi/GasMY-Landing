@@ -101,10 +101,10 @@ export function Footer() {
             <div className="flex flex-col md:flex-row items-center gap-4">
               {/* Legal Links */}
               <div className="flex gap-4 text-sm text-white/60">
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/privacidad" className="hover:text-white transition-colors">
                   Privacidad
                 </a>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/terminos" className="hover:text-white transition-colors">
                   Términos
                 </a>
               </div>

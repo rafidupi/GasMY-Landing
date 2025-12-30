@@ -93,11 +93,14 @@ export default function DashboardPage() {
   return (
     <div className="relative min-h-screen bg-bg-main text-text-strong">
       <div className="absolute inset-0 aurora-bg opacity-70" />
-      <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-10 pt-6">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 pb-10 pt-6">
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="gasmy." className="h-7 w-7" />
-            <span className="text-lg font-semibold tracking-tight">gasmy.</span>
+            <img
+              src="/logo.png"
+              alt="gasmy."
+              className="h-9 w-9 rounded-full bg-white/80 p-1 shadow-md object-contain"
+            />
           </div>
           <div className="flex items-center gap-2">
             <span className="rounded-full border border-border-subtle bg-white/80 px-3 py-1 text-[10px] font-semibold text-text-mid shadow-sm">
@@ -114,7 +117,7 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        <section className="mt-6 rounded-3xl border border-white/70 bg-white/90 p-5 shadow-[0_25px_60px_rgba(28,10,232,0.12)] backdrop-blur">
+        <section className="mt-6 rounded-3xl border border-white/70 bg-white/90 p-5 shadow-[0_25px_60px_rgba(28,10,232,0.12)] backdrop-blur max-w-full mx-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 rounded-full border border-border-subtle bg-white/80 px-3 py-1 text-xs font-semibold text-text-mid">
               <span className="h-2 w-2 rounded-full bg-text-light" />
@@ -129,7 +132,7 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-4">
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
             {topMetrics.map((metric) => (
               <div
                 key={metric.label}
@@ -156,66 +159,15 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-4 overflow-hidden rounded-2xl border border-white/70 bg-white/80">
-            <div className="relative h-40">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    'radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 55%), radial-gradient(circle at 80% 30%, rgba(14,165,233,0.2), transparent 50%), linear-gradient(135deg, rgba(148,163,184,0.35), rgba(255,255,255,0.7))',
-                }}
-              />
-              <div
-                className="absolute inset-0 opacity-60"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(rgba(148,163,184,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.35) 1px, transparent 1px)',
-                  backgroundSize: '24px 24px',
-                }}
-              />
-              <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 ring-4 ring-white/90" />
-              <div className="absolute bottom-2 left-2 text-[10px] font-semibold text-text-mid">
-                mapbox
-              </div>
-              <div className="absolute bottom-2 right-2 text-[10px] text-text-mid">
-                Powell Street
-              </div>
-            </div>
-          </div>
+          {/* Mapa eliminado como solicitaste */}
 
-          {error && (
-            <p className="mt-3 text-xs text-rose-600">Error al cargar viajes.</p>
-          )}
+          {error && <p className="mt-3 text-xs text-rose-600">Error al cargar viajes.</p>}
           {!error && trips.length === 0 && (
             <p className="mt-3 text-xs text-text-mid">Aun no hay viajes sincronizados.</p>
           )}
         </section>
 
-        <div className="mt-5 flex items-center gap-3">
-          <button
-            type="button"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-primary shadow-lg shadow-blue-200/40"
-            aria-label="Usuarios"
-          >
-            <Users className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            className="flex flex-1 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#1C0AE8] via-[#1D4CFF] to-[#3A8BFF] px-6 py-3 text-white shadow-[0_12px_30px_rgba(28,10,232,0.35)]"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
-              <Play className="h-4 w-4" />
-            </span>
-            <span className="text-base font-semibold">Iniciar</span>
-          </button>
-          <button
-            type="button"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-primary shadow-lg shadow-blue-200/40"
-            aria-label="Info"
-          >
-            <Info className="h-5 w-5" />
-          </button>
-        </div>
+        {/* Barra de acciones vacía, botón 'Iniciar' eliminado */}
 
         <div className="mt-4 rounded-full border border-white/70 bg-white/90 px-4 py-2 shadow-md shadow-blue-100/50">
           <div className="flex items-center justify-between">
