@@ -60,7 +60,7 @@ export default function LoginPage() {
               Volver al inicio
             </Link>
             <h1 className="mt-6 text-4xl font-semibold text-text-strong">
-              Iniciar sesion en GasMy
+              Iniciar sesion en gasmy.
             </h1>
             <p className="mt-4 text-text-mid">
               Accede con la misma cuenta del celular para ver tus viajes y gastos.
@@ -78,19 +78,17 @@ export default function LoginPage() {
           </div>
           <div className="rounded-3xl border border-white/70 bg-white/90 p-8 text-text-strong shadow-[0_25px_60px_rgba(28,10,232,0.15)] backdrop-blur">
             <h2 className="text-2xl font-semibold">Iniciar sesion</h2>
-            <p className="mt-2 text-sm text-text-mid">
-              Usa tu correo y contrasena o Google.
-            </p>
-              {!isConfigured && (
-                <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
-                  Firebase no esta configurado. Agrega tus variables en .env.local.
-                </div>
-              )}
-              {error && (
-                <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-700">
-                  {error}
-                </div>
-              )}
+            <p className="mt-2 text-sm text-text-mid">Usa tu correo y contrasena o Google.</p>
+            {!isConfigured && (
+              <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+                Firebase no esta configurado. Agrega tus variables en .env.local.
+              </div>
+            )}
+            {error && (
+              <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-700">
+                {error}
+              </div>
+            )}
             <div className="mt-6 space-y-3">
               <Button
                 type="button"

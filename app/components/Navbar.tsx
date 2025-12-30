@@ -91,7 +91,7 @@ export default function GasMyNavbar({
       <div className="w-full max-w-6xl">
         <div className="relative">
           <div className={containerClasses}>
-            <a href="#" className={logoClasses}>
+            <a href="/" className={logoClasses}>
               <img src="/logo.png" alt="gasmy." className="h-10 w-auto drop-shadow" />
             </a>
 
@@ -155,4 +155,3 @@ export default function GasMyNavbar({
     </header>
   );
 }
-
