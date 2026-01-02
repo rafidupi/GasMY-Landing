@@ -147,7 +147,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
             </div>
             <h3 className="text-2xl font-bold text-text-strong">¡Gracias!</h3>
             <p className="text-text-mid">
-              Te escribiremos cuando abramos más cupos de la beta en Santiago.
+              ¡Ya puedes utilizar la beta! Descargala en la sección de más abajo.
             </p>
           </div>
         ) : (
