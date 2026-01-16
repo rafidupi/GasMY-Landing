@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { checkRateLimit, getClientIP } from '@/lib/ratelimit';
 
 // CORS - Dominios permitidos
 const ALLOWED_ORIGINS = [
@@ -32,11 +33,40 @@ export async function OPTIONS(request: Request) {
 export async function POST(request: Request) {
   const origin = request.headers.get('origin');
   
-  // Verificar que el origin sea permitido
+  // 1. Verificar que el origin sea permitido (CORS)
   if (origin && !ALLOWED_ORIGINS.includes(origin)) {
     return NextResponse.json(
       { success: false, message: 'Origin not allowed' },
-      { status: 403 }
+      { status: 403, headers: corsHeaders(origin) }
+    );
+  }
+
+  // 2. Rate limiting - Limitar a 3 envíos por minuto por IP
+  const clientIP = getClientIP(request);
+  const rateLimitResult = checkRateLimit(clientIP, {
+    limit: 3,
+    window: 60, // 1 minuto
+  });
+
+  if (!rateLimitResult.success) {
+    const retryAfter = Math.ceil((rateLimitResult.reset - Date.now()) / 1000);
+    
+    return NextResponse.json(
+      { 
+        success: false, 
+        message: 'Demasiados intentos. Por favor, espera un momento.',
+        retryAfter,
+      },
+      { 
+        status: 429, // Too Many Requests
+        headers: {
+          ...corsHeaders(origin),
+          'Retry-After': retryAfter.toString(),
+          'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': rateLimitResult.reset.toString(),
+        },
+      }
     );
   }
 
@@ -130,7 +160,12 @@ export async function POST(request: Request) {
       },
       { 
         status: 200,
-        headers: corsHeaders(origin),
+        headers: {
+          ...corsHeaders(origin),
+          'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': rateLimitResult.reset.toString(),
+        },
       }
     );
   } catch (error) {
