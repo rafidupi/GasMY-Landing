@@ -37,11 +37,7 @@ export function Calculator({ onResultEmail }: CalculatorProps) {
 
   const handleCalculate = () => {
     setCalculated(true);
-    trackEvent.calcSubmitted({
-      kmPorLitro: inputs.kmPorLitro,
-      precioBencina: inputs.precioBencina,
-      costoEstimado: results.costoTotalMensual,
-    });
+    // Analytics event removed - calculator not in use
   };
 
   const handleEmailResults = () => {
