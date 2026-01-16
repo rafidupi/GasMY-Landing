@@ -41,6 +41,36 @@ export const metadata: Metadata = {
     icon: '/icon.png',
     apple: '/icon.png',
   },
+  keywords: [
+    'calculadora peajes chile',
+    'app ahorro gasolina',
+    'tracking combustible',
+    'TAG autopistas',
+    'costo viaje santiago',
+    'calculadora TAG',
+    'gastos auto chile',
+    'peajes santiago',
+    'ahorro combustible',
+    'app conductores chile',
+  ],
+  authors: [{ name: 'gasmy.' }],
+  creator: 'gasmy.',
+  publisher: 'gasmy.',
+  metadataBase: new URL('https://gasmy.org'),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
