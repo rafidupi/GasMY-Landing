@@ -37,12 +37,13 @@ export function FlotaForm({ isOpen, onClose }: FlotaFormProps) {
     setLoading(true);
 
     try {
+      // Usar los datos sanitizados de la validación
       const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, type: 'flota' }),
+        body: JSON.stringify({ ...validation.sanitized, type: 'flota' }),
       });
 
       if (!response.ok) {
@@ -50,7 +51,7 @@ export function FlotaForm({ isOpen, onClose }: FlotaFormProps) {
       }
 
       setSuccess(true);
-      trackEvent.leadSubmitted({ type: 'flota', vehiculos: formData.numeroVehiculos });
+      trackEvent.leadSubmitted({ type: 'flota', vehiculos: validation.sanitized.numeroVehiculos });
 
       setTimeout(() => {
         onClose();

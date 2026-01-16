@@ -1,6 +1,45 @@
 import { NextResponse } from 'next/server';
 
+// CORS - Dominios permitidos
+const ALLOWED_ORIGINS = [
+  'https://gasmy.org',
+  'https://www.gasmy.org',
+  'http://localhost:3000', // Para desarrollo local
+];
+
+// Headers de seguridad CORS
+function corsHeaders(origin: string | null) {
+  // Si el origin está en la lista permitida, permitir
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400', // 24 horas
+  };
+}
+
+// Manejar preflight requests (OPTIONS)
+export async function OPTIONS(request: Request) {
+  const origin = request.headers.get('origin');
+  return NextResponse.json({}, { 
+    status: 200,
+    headers: corsHeaders(origin),
+  });
+}
+
 export async function POST(request: Request) {
+  const origin = request.headers.get('origin');
+  
+  // Verificar que el origin sea permitido
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    return NextResponse.json(
+      { success: false, message: 'Origin not allowed' },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
 
@@ -89,7 +128,10 @@ export async function POST(request: Request) {
         success: true,
         message: 'Lead received successfully',
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: corsHeaders(origin),
+      }
     );
   } catch (error) {
     console.error('Error processing lead:', error);
@@ -98,7 +140,10 @@ export async function POST(request: Request) {
         success: false,
         message: 'Error processing lead',
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders(origin),
+      }
     );
   }
 }

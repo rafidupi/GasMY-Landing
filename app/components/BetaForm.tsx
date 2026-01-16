@@ -89,12 +89,13 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
     setLoading(true);
 
     try {
+      // Usar los datos sanitizados de la validación
       const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, type: 'beta' }),
+        body: JSON.stringify({ ...validation.sanitized, type: 'beta' }),
       });
 
       if (!response.ok) {
@@ -102,7 +103,7 @@ export function BetaForm({ isOpen, onClose }: BetaFormProps) {
       }
 
       setSuccess(true);
-      trackEvent.leadSubmitted({ type: 'beta', tipoUsuario: formData.tipoUsuario });
+      trackEvent.leadSubmitted({ type: 'beta', tipoUsuario: validation.sanitized.tipoUsuario });
 
       setTimeout(() => {
         onClose();
